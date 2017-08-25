@@ -6,7 +6,10 @@
   "dependencies": {
     "express": "^4.15.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
