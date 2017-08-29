@@ -7,11 +7,15 @@ describe('Message model', () => {
     let message;
 
     beforeEach(() => {
-      message = new Message({ email: 'ssing128@gmail.com', body: 'i love you' });
+      message = new Message({ from_email: 'ssing128@gmail.com', to_email:'ssing128@gmail', body: 'i love you' });
     })
 
-    it('should have email', () => {
-      message.should.have.property('email', message.email);
+    it('should have from email', () => {
+      message.should.have.property('from_email', message.from_email);
+    }) 
+
+    it('should have to email', () => {
+      message.should.have.property('to_email', message.to_email);
     }) 
 
     it('should have body', () => {

@@ -2,7 +2,7 @@
 
 describe('/POST emails', ()=> {
   it('should save message to DB', (done)=> {
-    let message = {email: 'ssing128@gmail', body: 'i love you'};
+    let message = {from_email: 'ssing128@gmail', to_email: 'ssing128@gmail', body: 'i love you'};
     request
       .post('/emails')
       .send(message)
