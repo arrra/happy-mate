@@ -6,16 +6,21 @@ describe('Mail', ()=> {
   describe('Mail properties', ()=> {
     let mail;
 
-    beforeEach(() => {
-      mail = new Mail('from@gmail.com', 'to@gmail.com', 'i love you');
+    beforeEach((done) => {
+      mail = new Mail('ssing128@gmail.com', 'ssing128@gmail.com', 'i love you');
+      mail.send(()=> {
+        console.log('__calling done')
+        done();
+      })
     })
 
     it('should set fromEmail', ()=> {
-      expect(mail.fromEmail).to.equal('from@gmail.com');
+      expect(mail.fromEmail).to.equal('ssing128@gmail.com');
+      console.log('__inside it block')
     })
 
     it('should set toEmail', ()=> {
-      expect(mail.toEmail).to.equal('to@gmail.com');
+      expect(mail.toEmail).to.equal('ssing128@gmail.com');
     })
 
     it('should set message', ()=> {
