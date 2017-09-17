@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
     if (err){
       res.status(400).json(err);
     } else {
-      res
       res.status(201).json(conversation);
     }
   });
