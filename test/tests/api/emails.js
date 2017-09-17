@@ -12,7 +12,7 @@ describe('/POST emails', ()=> {
         res.body.should.be.a('object');
         res.body.should.have.property('body', message.body);
         res.body.should.have.property('id');
-        done(err);
+        done();
       })
   })
 })
