@@ -6,4 +6,6 @@ const uri = 'mongodb://localhost/happy-mate';
 
 mongoose.connect(uri, {useMongoClient: true});
 
-module.exports = uri;
+module.exports = {
+  uri,
+};
