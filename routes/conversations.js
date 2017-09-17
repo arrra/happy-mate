@@ -17,14 +17,12 @@ router.post('/', (req, res) => {
   });
 
   conversation.save((err) => {
-    if (err.code === 11000){
-      let url = '/conversations/'+conversation.from_email+'/messages/send';
-      return res.redirect(301,url);
-    }
     if (err){
-      return res.status(500).json({error: err});
+      res.status(400).json(err);
+    } else {
+      res
+      res.status(201).json(conversation);
     }
-    return res.status(201).json(conversation);
   });
 
 })
