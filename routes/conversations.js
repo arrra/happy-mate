@@ -10,7 +10,6 @@ const router = Router();
 
 
 router.post('/', (req, res) => {
-
   let conversation = new Conversation({
     from_email: req.body.from_email,
     to_email: req.body.to_email
@@ -24,12 +23,9 @@ router.post('/', (req, res) => {
       res.status(201).json(conversation);
     }
   });
-
 })
 
 router.get('/:email/messages/send', (req, res) => {
-  let messageToSend;
-
   Conversation.find(req.params.from_email, (err, conversation) => {
 
     Message.find({}, (err, messages) => {
