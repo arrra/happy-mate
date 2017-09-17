@@ -4,8 +4,7 @@ const app = require('../../server');
 const chai = require('chai');
 const db = require('../../db');
 const mongoose = require('mongoose');
-const dbURI ='mongodb://localhost/messages';
-const clearDB  = require('mocha-mongoose')(dbURI);
+const clearDB  = require('mocha-mongoose')(db.uri);
 const request = require('supertest');
 
 chai.use(require('chai-as-promised'));
