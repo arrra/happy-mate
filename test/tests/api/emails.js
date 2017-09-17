@@ -10,6 +10,8 @@ describe('/POST emails', ()=> {
       .end((err,res)=> {
         if(err) return done(err);
         res.body.should.be.a('object');
+        res.body.should.have.property('body', message.body);
+        res.body.should.have.property('id');
         done(err);
       })
   })
