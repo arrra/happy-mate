@@ -28,7 +28,7 @@ router.get('/:email/messages/send', (req, res) => {
   Conversation.findOne(req.params.from_email, (err, conversation) => {
 
     Message.find({}, (err, messages) => {
-      let messageToSend = generateMessage(messages, randomIndex(messages.length, 0));
+      let messageToSend =  messages[randomIndex(messages.length, 0)];
       Conversation.update({_id: conversation[0]._id}, {$push: {sent_messages: messageToSend}}).exec((err, update) => {
         if(err) return res.status(400).json(err);
         const msg = {
@@ -48,10 +48,5 @@ router.get('/:email/messages/send', (req, res) => {
 const randomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-const generateMessage = (messages, fn) => {
-  return messages[fn]
-}
-
 
 module.exports = router;
