@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:email/messages/send', (req, res) => {
-  Conversation.find(req.params.from_email, (err, conversation) => {
+  Conversation.findOne(req.params.from_email, (err, conversation) => {
 
     Message.find({}, (err, messages) => {
       let messageToSend = generateMessage(messages, randomIndex(messages.length, 0));
