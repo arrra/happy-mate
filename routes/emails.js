@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
   let message = new Message(req.body);
   message.save(req.body, (err, message) => {
     if (err) return err;
-    res.status(200).end();
+    res.status(201).end(message);
   })
 })
 
