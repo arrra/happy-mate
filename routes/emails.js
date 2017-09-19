@@ -7,9 +7,12 @@ const router = Router();
 
 router.post('/', (req, res) => {
   let message = new Message(req.body);
-  message.save(req.body, (err, message) => {
-    if (err) return err;
-    res.status(201).end(message);
+  message.save((err, message) => {
+    if (err){
+      res.status(400).json(err);
+      return err;
+    }
+    res.status(201).json(message);
   })
 })
 
