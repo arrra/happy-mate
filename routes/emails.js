@@ -5,10 +5,6 @@ const Message = require('../models/Message');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.status(200).end();
-})
-
 router.post('/', (req, res) => {
   let message = new Message(req.body);
   message.save(req.body, (err, message) => {
