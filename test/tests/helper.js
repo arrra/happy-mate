@@ -17,7 +17,10 @@ global.request = request(app);
 beforeEach((done, err) => {
   if(mongoose.connection.db) return done(err);
 
-  mongoose.connect(dbURI);
+  mongoose.connect(db.uri, (err) => {
+    if(err) return err;
+    done();
+  });
   clearDB((err) => {
     if(err) return err;
     done();
@@ -26,5 +29,5 @@ beforeEach((done, err) => {
 
 afterEach((done) => {
   mongoose.disconnect();
-  return done();
+  done();
 });

@@ -7,7 +7,9 @@ const bodyParser = require('body-parser');
 const db = require('./db');
 const router = require('./routes/router')
 
-db.setupAndConnect();
+db.setupAndConnect((err) => {
+  if (err) return err;
+});
 
 router(app);
 
