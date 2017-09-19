@@ -7,11 +7,8 @@ const uri = 'mongodb://localhost/happy-mate';
 
 
 const setupAndConnect = (done) => {
-  mongoose.connect(uri, {useMongoClient: true}, (err,done) => {
-    if(err) return err;
-    done;
-  });
-}
+  mongoose.connect(uri, {useMongoClient: true}, done);
+};
 
 module.exports = {
   uri,

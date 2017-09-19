@@ -7,16 +7,19 @@ const bodyParser = require('body-parser');
 const db = require('./db');
 const router = require('./routes/router')
 
-db.setupAndConnect((err) => {
-  if (err) return err;
-});
-
 app.use(bodyParser.json());
 
 router(app);
 
-app.listen(3000, () => {
-  console.log('listening on port 3000');
-})
+db.setupAndConnect((err) => {
+  if (err){
+    console.log('server unable to connect to DB', err);
+    return;
+  }
+  app.listen(3000, () => {
+    console.log('listening on port 3000');
+  })
+});
+
 
 module.exports = app;

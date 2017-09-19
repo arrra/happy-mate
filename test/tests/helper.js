@@ -14,20 +14,15 @@ global.request = request(app);
 
 
 
-beforeEach((done, err) => {
-  if(mongoose.connection.db) return done(err);
+beforeEach((done) => {
+  if(mongoose.connection.db) return done();
 
   mongoose.connect(db.uri, (err) => {
-    if(err) return err;
-    done();
-  });
-  clearDB((err) => {
-    if(err) return err;
-    done();
+    if(err) return done(err);
+    clearDB(done);
   });
 });
 
 afterEach((done) => {
-  mongoose.disconnect();
-  done();
+  mongoose.disconnect(done);
 });
