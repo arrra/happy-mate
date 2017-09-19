@@ -11,6 +11,8 @@ db.setupAndConnect((err) => {
   if (err) return err;
 });
 
+app.use(bodyParser.json());
+
 router(app);
 
 app.listen(3000, () => {
