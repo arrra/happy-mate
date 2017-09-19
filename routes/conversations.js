@@ -45,7 +45,7 @@ router.get('/:email/messages/send', (req, res) => {
   })
 })
 
-const randomIndex = (max, min) => {
+const randomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
