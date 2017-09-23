@@ -24,24 +24,19 @@ router.post('/', (req, res) => {
   });
 })
 
-router.get('/:email/messages/send', (req, res) => {
-  Conversation.findOne(req.params.from_email, (err, conversation) => {
-
-    Message.find({}, (err, messages) => {
-      let messageToSend =  messages[randomIndex(messages.length, 0)];
-      Conversation.update({_id: conversation[0]._id}, {$push: {sent_messages: messageToSend}}).exec((err, update) => {
-        if(err) return res.status(400).json(err);
-        const msg = {
-          to: conversation[0].to_email,
-          from: conversation[0].from_email,
-          subject: 'Sending with SendGrid is Fun',
-          text: messageToSend.body,
-          html: messageToSend.body,
-          templateId: 'dd8b2676-2c59-4122-a26f-a119d99a2af8'
-        };
-        sgMail.send(msg);
-      });
-    })
+router.put('/:id/messages', (req, res) => {
+  Message.getRandomMessage((err, message) => {
+    if(err){
+      res.status(400).json(err);
+    } else {
+      Conversation.updateSentMessages(req.params.id, message, (err, conversation) => {
+        if(err){
+          res.status(400).json(err);
+        } else {
+          res.status(200).json(conversation);
+        }
+      })
+    }
   })
 })
 
