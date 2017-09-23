@@ -11,7 +11,7 @@ const ConversationSchema = new Schema({
 
 ConversationSchema.statics.updateSentMessages = function(id, message, cb) {
   return this.findById(id, function(err, conversation) {
-    conversation.sent_messages.push(message);
+    conversation.sent_messages.unshift(message);
     conversation.save();
     return cb(err, conversation);
   })
