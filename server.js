@@ -8,6 +8,7 @@ const db = require('./db');
 const router = require('./routes/router')
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 
 router(app);
 
