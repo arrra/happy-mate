@@ -3,7 +3,12 @@
 const emails = require('./emails');
 const conversations = require('./conversations');
 
-module.exports = function(app){
+const attachRoutes = (app) => {
   app.use('/emails', emails)
   app.use('/conversations', conversations)
-};
+}
+
+module.exports = {
+  attachRoutes
+}
+

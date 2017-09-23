@@ -10,7 +10,7 @@ const router = require('./routes/router')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
-router(app);
+router.attachRoutes(app);
 
 db.setupAndConnect((err) => {
   if (err){
