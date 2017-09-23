@@ -3,8 +3,7 @@
 const Router = require('express').Router;
 const Conversation = require('../models/Conversation');
 const Message = require('../models/Message');
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const Mail = require('../classes/Mail');
 
 const router = Router();
 
@@ -40,5 +39,24 @@ router.put('/:id/messages', (req, res) => {
   })
 })
 
+router.post('/:id/messages/send', (req, res) => {
+  Conversation.findById(req.params.id, (err, conversation) => {
+    let subject = "Important email";
+    let mail = new Mail(
+      conversation.to_email,
+      conversation.from_email,
+      subject,
+      conversation.sent_messages[0].body,
+      process.env.TEMPLATE_ID
+    );
+    mail.sendEmail((err, result) => {
+      if (err) {
+        res.status(400).json(err)
+      } else {
+        res.status(200).json(result)
+      }
+    })
+  })
+})
 
 module.exports = router;
