@@ -5,7 +5,18 @@
   "extends": "airbnb",
   "rules": {
     "one-var-declaration-per-line": 2,
+    "no-underscore-dangle": 0,
+    "no-mixed-operators": [
+      "error",
+      {
+        "allowSamePrecedence": true
+      }
+    ],
+    "no-shadow": 0,
     "handle-callback-err": 2,
+    "consistent-return": 0,
+    "no-console": 0,
+    "func-names": 0,
     "no-mixed-requires": 2,
     "no-new-require": 2,
     "no-path-concat": 2,
