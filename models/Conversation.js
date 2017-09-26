@@ -9,13 +9,13 @@ const ConversationSchema = new Schema({
   sent_messages: {type: Array}
 })
 
-ConversationSchema.statics.updateSentMessages = function(id, message, cb) {
-  return this.findById(id, function(err, conversation) {
-    conversation.sent_messages.unshift(message);
-    conversation.save();
-    return cb(err, conversation);
-  })
-}
+ConversationSchema.method({
+  addNewMessage: function(message, cb) {
+    this.sent_messages.unshift(message);
+    this.save(cb);
+  }
+})
+
 const Conversation = mongoose.model('Conversation', ConversationSchema);
 
 module.exports = Conversation;

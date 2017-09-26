@@ -29,13 +29,19 @@ router.put('/:id/messages', (req, res) => {
       res.status(400).json(err);
       return;
     }
-
-    Conversation.updateSentMessages(req.params.id, message, (err, conversation) => {
+    Conversation.findById(req.params.id, (err, conversation) => {
       if(err){
-        res.status(400).json(err);
-      } else {
-        res.status(200).json(conversation);
+        res.status(404).json(err);
+        return;
       }
+
+      conversation.addNewMessage(message, (err) => {
+        if(err){
+          res.status(500).json(err);
+        } else {
+          res.status(200).json(conversation);
+        }
+      })
     })
   })
 })
