@@ -10,7 +10,8 @@ const MessageSchema = new Schema({
 
 MessageSchema.statics.getRandomMessage = function(cb) {
   return this.find({},function(err, messages) {
-    cb(err, messages[util.getRandomNumber(0, messages.length)])
+    const randomIndex = util.getRandomNumber(0, messages.length);
+    cb(err, messages[randomIndex]);
   });
 }
 
