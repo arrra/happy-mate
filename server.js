@@ -15,6 +15,7 @@ router.attachRoutes(app);
 db.setupAndConnect((err) => {
   if (err){
     console.log('server unable to connect to DB', err);
+    process.exit(1);
     return;
   }
   app.listen(3000, () => {
