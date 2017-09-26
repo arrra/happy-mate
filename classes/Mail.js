@@ -11,16 +11,14 @@ class Mail {
     let _templateId = templateId;
 
     this.sendEmail = function(cb) {
-      return sgMail.send({
+      const sgMsg = {
         to: _toEmail,
         from: _fromEmail,
         subject: _subject,
         html: _html,
         templateId: _templateId
-      },
-        function(err, result) {
-          cb(err, result);
-        });
+      }
+      sgMail.send(sgMsg,cb);
     }
   }
 }
