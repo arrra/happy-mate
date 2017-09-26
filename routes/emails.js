@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
   message.save((err, message) => {
     if (err){
       res.status(400).json(err);
-      return err;
+      return;
     }
 
     res.status(201).json(message);
