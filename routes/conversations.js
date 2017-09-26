@@ -7,7 +7,6 @@ const Mail = require('../classes/Mail');
 
 const router = Router();
 
-
 router.post('/', (req, res) => {
   let conversation = new Conversation({
     from_email: req.body.from_email,
