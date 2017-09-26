@@ -8,11 +8,10 @@ const clearDB  = require('mocha-mongoose')(db.uri);
 const request = require('supertest');
 
 chai.use(require('chai-as-promised'));
+
 global.expect = chai.expect();
 global.should = chai.should();
 global.request = request(app);
-
-
 
 beforeEach((done) => {
   if(mongoose.connection.db) return done();

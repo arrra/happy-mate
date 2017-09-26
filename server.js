@@ -18,6 +18,7 @@ db.setupAndConnect((err) => {
     process.exit(1);
     return;
   }
+
   app.listen(3000, () => {
     console.log('listening on port 3000');
   })

@@ -27,15 +27,16 @@ router.put('/:id/messages', (req, res) => {
   Message.getRandomMessage((err, message) => {
     if(err){
       res.status(400).json(err);
-    } else {
-      Conversation.updateSentMessages(req.params.id, message, (err, conversation) => {
-        if(err){
-          res.status(400).json(err);
-        } else {
-          res.status(200).json(conversation);
-        }
-      })
+      return;
     }
+
+    Conversation.updateSentMessages(req.params.id, message, (err, conversation) => {
+      if(err){
+        res.status(400).json(err);
+      } else {
+        res.status(200).json(conversation);
+      }
+    })
   })
 })
 
@@ -49,6 +50,7 @@ router.post('/:id/messages/send', (req, res) => {
       conversation.sent_messages[0].body,
       process.env.TEMPLATE_ID
     );
+
     mail.sendEmail((err, result) => {
       if (err) {
         res.status(400).json(err)

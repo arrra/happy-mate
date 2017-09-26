@@ -12,6 +12,7 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
       return err;
     }
+
     res.status(201).json(message);
   })
 })
