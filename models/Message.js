@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const util = require('../util/index');
+const util = require('../util');
 
 const MessageSchema = new Schema({
   body: {type: String, required: true},
