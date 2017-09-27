@@ -24,6 +24,7 @@
     "eslint-plugin-react": "^7.4.0"
   },
   "scripts": {
+    "lint": "node_modules/.bin/eslint ./",
     "test": "mocha test/tests --recursive",
     "start": "node server.js"
   },
