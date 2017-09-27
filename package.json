@@ -8,16 +8,23 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "mocha-mongoose": "^1.2.0",
-    "mongoose": "^4.11.12"
+    "mongoose": "^4.11.12",
+    "dotenv": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^3.0.0",
-    "dotenv": "^4.0.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-react": "^7.4.0"
   },
   "scripts": {
+    "lint": "node_modules/.bin/eslint ./",
     "test": "mocha test/tests --recursive",
     "start": "node server.js"
   },

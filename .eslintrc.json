@@ -1,0 +1,23 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "consistent-return": 0,
+    "func-names": 0,
+    "handle-callback-err": 2,
+    "no-console": 0,
+    "no-mixed-operators": [
+      "error",
+      {
+        "allowSamePrecedence": true
+      }
+    ],
+    "no-mixed-requires": 2,
+    "no-process-exit": 2,
+    "no-shadow": 0,
+    "no-sync": 2,
+    "no-underscore-dangle": 0
+  }
+}
