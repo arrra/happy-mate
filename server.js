@@ -8,8 +8,21 @@ const router = require('./routes/index');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if(req.method === 'OPTIONS'){
+    console.log(req.method)
+    res.status(200).end();
+  }
+  next();
+});
 
 router.attachRoutes(app);
+
+app.use((req, res) => {
+    res.status(404).end();
+})
 
 db.setupAndConnect((err) => {
   if (err) {
