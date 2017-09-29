@@ -1,28 +1,32 @@
 import React from 'react';
 import axios from 'axios';
 
+const url ='http://localhost:3000/conversations'
+
 class SendMessageForm extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = ({
-      fromEmail: null,
-      toEmail: null,
-    })
+  sendRandomMessage(conversationId){
+    return axios.post(`${url}/${conversationId}/messages/send`);
   }
 
-  handleClick(){
-    const fromEmail = this.fromEmailInput.value;
-    const toEmail = this.toEmailInput.value;
-    this.setState({fromEmail, toEmail});
+  getRandomMessage(conversationId){
+    return axios.put(`${url}/${conversationId}/messages`);
+  }
+
+  createConversation(){
+    return axios.post(url,{
+      from_email: this.fromEmailInput.value,
+      to_email: this.toEmailInput.value
+    });
   }
 
   handleSubmit(event){
     event.preventDefault();
-
-    axios.post('http://localhost:3000/conversations',{
-      from_email: this.fromEmailInput.value,
-      to_email: this.toEmailInput.value
-    })
+    this.createConversation().then((conversation) => {
+      this.getRandomMessage(conversation.data._id).then((updatedConversation) => {
+        this.sendRandomMessage(updatedConversation.data._id).then((message) => {
+        })
+      })
+    });
   }
 
   render(){
