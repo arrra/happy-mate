@@ -33,10 +33,11 @@ class SendMessageForm extends React.Component {
         .then(() => {
           // TODO: notify user message sent
           window.alert('Email sent');
-        })
-        .catch(() => {
-          window.alert('Error: Email not sent');
-        }));
+        }),
+      )
+      .catch(() => {
+        window.alert('Error: Email not sent');
+      });
   }
 
   render() {
