@@ -28,11 +28,15 @@ class SendMessageForm extends React.Component {
       from_email: this.fromEmailInput.value,
       to_email: this.toEmailInput.value,
     };
-    getOrCreateConversation(params).then((conversation) => {
-      sendRandomMessage(conversation).then(() => {
-        // TODO: notify user message sent
-      });
-    });
+    getOrCreateConversation(params)
+      .then(conversation => sendRandomMessage(conversation)
+        .then(() => {
+          // TODO: notify user message sent
+          window.alert('Email sent');
+        })
+        .catch(() => {
+          window.alert('Error: Email not sent');
+        }));
   }
 
   render() {
