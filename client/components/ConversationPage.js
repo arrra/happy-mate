@@ -30,7 +30,11 @@ class ConversationPage extends React.Component {
 
     return(
       <div>
-        <h1>{this.state.conversation._id}</h1>
+        <h1>{`From: ${this.state.conversation.from_email}`}</h1>
+        <h1>{`To: ${this.state.conversation.to_email}`}</h1>
+        {this.state.conversation.sent_messages.map((message) => {
+          return <li>{message.body}</li>
+        })}
       </div>
     )
   }
