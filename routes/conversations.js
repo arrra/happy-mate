@@ -6,15 +6,15 @@ const Mail = require('../classes/Mail');
 const router = Router();
 
 router.get('/', (req, res) => {
-  Conversation.findOne(req.query,(err, conversation) => {
-    if(err){
+  Conversation.findOne(req.query, (err, conversation) => {
+    if (err) {
       res.status(500).json(err);
-    } else if(conversation === null){
+    } else if (conversation === null) {
       res.status(404).end();
     } else {
       res.status(200).json(conversation);
     }
-  })
+  });
 });
 
 router.post('/', (req, res) => {
@@ -41,7 +41,6 @@ router.put('/:id/messages', (req, res) => {
 
     Message.getRandomMessage((err, message) => {
       if (err) {
-            console.log('getRandomMessage');
         res.status(500).json(err);
         return;
       }
@@ -55,16 +54,14 @@ router.put('/:id/messages', (req, res) => {
         process.env.TEMPLATE_ID,
       );
 
-      mail.sendEmail((err, result) => {
+      mail.sendEmail((err) => {
         if (err) {
-            console.log('sendEmail',err,result);
           res.status(500).json(err);
           return;
         }
 
         conversation.addNewMessage(message, (err) => {
           if (err) {
-            console.log('addNewMessage');
             res.status(500).json(err);
           } else {
             res.status(200).json(conversation);
