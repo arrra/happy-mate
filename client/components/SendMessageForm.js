@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 const url = 'http://localhost:3000/conversations';
 
@@ -31,8 +33,8 @@ class SendMessageForm extends React.Component {
     getOrCreateConversation(params)
       .then(conversation => sendRandomMessage(conversation)
         .then(() => {
-          // TODO: notify user message sent
-          window.alert('Email sent');
+          const conversationPath = `/conversations/${conversation._id}`;
+          this.props.history.push(conversationPath);
         }),
       )
       .catch(() => {
@@ -85,4 +87,8 @@ class SendMessageForm extends React.Component {
   }
 }
 
-export default SendMessageForm;
+SendMessageForm.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(SendMessageForm);

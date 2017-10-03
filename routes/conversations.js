@@ -5,6 +5,17 @@ const Mail = require('../classes/Mail');
 
 const router = Router();
 
+router.get('/:id', (req, res) => {
+  Conversation.findById(req.params.id, (err, conversation) => {
+    if (err || !conversation) {
+      res.status(404).json(err);
+      return;
+    }
+
+    res.status(200).json(conversation);
+  });
+});
+
 router.get('/', (req, res) => {
   Conversation.findOne(req.query, (err, conversation) => {
     if (err) {
