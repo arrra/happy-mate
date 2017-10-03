@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const util = require('../util');
 
 const Schema = mongoose.Schema;
 
@@ -14,7 +15,13 @@ ConversationSchema.method({
     this.sent_messages.unshift(message);
     this.save(cb);
   },
+
+  getRandomMessage(cb) {
+    const randomIndex = util.getRandomNumber(0, this.messagePool.length);
+    cb(null, this.messagePool[randomIndex]);
+  }
 });
+
 
 const Conversation = mongoose.model('Conversation', ConversationSchema);
 

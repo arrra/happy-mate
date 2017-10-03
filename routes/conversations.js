@@ -54,14 +54,14 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id/messages', (req, res) => {
+router.put('/:id/send-random-message', (req, res) => {
   Conversation.findById(req.params.id, (err, conversation) => {
     if (err) {
       res.status(404).json(err);
       return;
     }
 
-    Message.getRandomMessage((err, message) => {
+    conversation.getRandomMessage((err, message) => {
       if (err) {
         res.status(500).json(err);
         return;

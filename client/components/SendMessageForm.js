@@ -13,7 +13,7 @@ const getOrCreateConversation = (params) => {
 };
 
 const sendRandomMessage = (conversation) => {
-  const putUrl = `${url}/${conversation._id}/messages`;
+  const putUrl = `${url}/${conversation._id}/send-random-message`;
   return axios.put(putUrl).then(res => res.data);
 };
 
