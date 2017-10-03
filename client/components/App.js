@@ -6,6 +6,7 @@ import {
 import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
+import UserCreateMessageForm from './UserCreateMessageForm';
 
 class App extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class App extends React.Component {
               conversationId={props.match.params.id}
             />)}
           />
+          <Route path="/conversations/:id/messages" component={UserCreateMessageForm} />
         </div>
       </Router>
     );
