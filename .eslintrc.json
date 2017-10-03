@@ -2,7 +2,16 @@
   "env": {
     "mocha": true
   },
-  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "extends": [
+    "react-app",
+    "airbnb"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
   "rules": {
     "consistent-return": 0,
     "func-names": 0,
@@ -18,6 +27,8 @@
     "no-process-exit": 2,
     "no-shadow": 0,
     "no-sync": 2,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "react/jsx-filename-extension": 0,
+    "react/prefer-stateless-function": 0
   }
 }

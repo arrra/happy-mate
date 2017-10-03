@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ConversationSchema = new Schema({
-  from_email: { type: String, required: true, unique: true },
-  to_email: { type: String, required: true, unique: true },
+  from_email: { type: String, required: true },
+  to_email: { type: String, required: true },
   sent_messages: { type: Array },
 });
 
