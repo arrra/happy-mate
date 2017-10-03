@@ -30,7 +30,7 @@ class ConversationPage extends React.Component {
   }
 
   handleConversationUpdate(conversation) {
-    this.setState({conversation});
+    this.setState({ conversation });
   }
 
   render() {
