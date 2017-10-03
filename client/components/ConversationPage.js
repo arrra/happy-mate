@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import UserCreateMessageForm from './UserCreateMessageForm';
 
 const baseUrl = 'http://localhost:3000/conversations';
 
@@ -17,6 +18,8 @@ class ConversationPage extends React.Component {
     this.state = {
       conversation: null,
     };
+
+    this.handleConversationUpdate = this.handleConversationUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +27,10 @@ class ConversationPage extends React.Component {
       .then((conversation) => {
         this.setState({ conversation });
       });
+  }
+
+  handleConversationUpdate(conversation) {
+    this.setState({conversation});
   }
 
   render() {
@@ -34,6 +41,10 @@ class ConversationPage extends React.Component {
         <h1>{`From: ${this.state.conversation.from_email}`}</h1>
         <h1>{`To: ${this.state.conversation.to_email}`}</h1>
         {this.state.conversation.sent_messages.map(message => <li>{message.body}</li>)}
+        <UserCreateMessageForm
+          conversation={this.state.conversation}
+          onConversationUpdate={this.handleConversationUpdate}
+        />
       </div>
     );
   }
