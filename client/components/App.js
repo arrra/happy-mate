@@ -14,9 +14,13 @@ class App extends React.Component {
         <div>
           <Navbar/>
           <Route exact path="/" component={SendMessageForm}/>
-          <Route path="/conversations/:id" component={ConversationPage}/>
-        </div>
-      </Router>
+          <Route path="/conversations/:id" render={(props)=> {
+            return <ConversationPage 
+              conversationId={props.match.params.id}
+            />
+          }}/>
+      </div>
+    </Router>
     );
   }
 }
