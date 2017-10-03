@@ -11,7 +11,7 @@ const Navbar = () => (
       <div className="navbar-end">
         <a
           className="navbar-item is-hidden-desktop-only"
-          href="https://github.com/jgthms/bulma"
+          href="/"
           target="_blank"
           rel="noreferrer noopener"
         >
