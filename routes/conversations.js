@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/:id', (req, res) => {
   Conversation.findById(req.params.id, (err, conversation) => {
-    if (err) {
+    if (err || !conversation) {
       res.status(404).json(err);
       return;
     }
