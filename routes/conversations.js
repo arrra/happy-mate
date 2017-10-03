@@ -13,8 +13,8 @@ router.get('/:id', (req, res) => {
     }
 
     res.status(200).json(conversation);
-  })
-})
+  });
+});
 
 router.get('/', (req, res) => {
   Conversation.findOne(req.query, (err, conversation) => {
