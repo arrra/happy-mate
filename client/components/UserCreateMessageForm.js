@@ -21,11 +21,11 @@ class UserCreateMessageForm extends React.Component {
     const message = {
       body: this.userMessage.value,
     };
-    const message_pool = this.props.conversation.message_pool.slice();
-    message_pool.push(message);
+    const messagePool = this.props.conversation.messagePool.slice();
+    messagePool.push(message);
 
     const update = {
-      message_pool,
+      messagePool,
     };
 
     updateConversation(this.props.conversation._id, update)
@@ -42,7 +42,7 @@ class UserCreateMessageForm extends React.Component {
         />
         <span>Enter Message</span>
         <button onClick={this.handleClick}>Add Message</button>
-        {this.props.conversation.message_pool.map(message => <li>{message.body}</li>)}
+        {this.props.conversation.messagePool.map(message => <li>{message.body}</li>)}
       </div>
     );
   }

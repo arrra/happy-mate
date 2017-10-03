@@ -6,7 +6,7 @@ const ConversationSchema = new Schema({
   from_email: { type: String, required: true },
   to_email: { type: String, required: true },
   sent_messages: { type: Array },
-  message_pool: { type: Array },
+  messagePool: { type: Array },
 });
 
 ConversationSchema.method({
