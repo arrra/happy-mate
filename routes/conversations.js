@@ -1,6 +1,5 @@
 const Router = require('express').Router;
 const Conversation = require('../models/Conversation');
-const Message = require('../models/Message');
 const Mail = require('../classes/Mail');
 
 const router = Router();

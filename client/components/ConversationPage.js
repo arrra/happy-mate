@@ -39,10 +39,10 @@ class ConversationPage extends React.Component {
     this.setState({ conversation });
   }
 
-  handleSendRandomMessageClick(){
+  handleSendRandomMessageClick() {
     sendRandomMessage(this.state.conversation)
-      .then(conversation => {
-        this.setState({conversation})
+      .then((conversation) => {
+        this.setState({ conversation });
       })
       .catch(() => {
         window.alert('Error: Email was not sent');

@@ -26,7 +26,7 @@ class SendMessageForm extends React.Component {
       to_email: this.toEmailInput.value,
     };
     getOrCreateConversation(params)
-      .then(conversation => {
+      .then((conversation) => {
         const conversationPath = `/conversations/${conversation._id}`;
         this.props.history.push(conversationPath);
       })
