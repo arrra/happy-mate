@@ -17,7 +17,7 @@ ConversationSchema.method({
   },
 
   getRandomMessage(cb) {
-    const randomIndex = util.getRandomNumber(0, this.messagePool.length);
+    const randomIndex = util.getRandomNumber(0, this.messagePool.length - 1);
     cb(null, this.messagePool[randomIndex]);
   }
 });
