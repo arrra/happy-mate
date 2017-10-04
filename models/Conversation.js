@@ -12,8 +12,15 @@ const ConversationSchema = new Schema({
 
 ConversationSchema.method({
   addNewMessage(message, cb) {
-    this.sent_messages.unshift(message);
-    this.save(cb);
+    const sentMessages = this.sent_messages.slice();
+    sentMessages.push(message);
+
+    this.constructor.findByIdAndUpdate(
+      this._id,
+      { sent_messages: sentMessages },
+      { new: true },
+      cb,
+    );
   },
 
   getRandomMessage(cb) {
@@ -21,7 +28,6 @@ ConversationSchema.method({
     cb(null, this.messagePool[randomIndex]);
   },
 });
-
 
 const Conversation = mongoose.model('Conversation', ConversationSchema);
 
