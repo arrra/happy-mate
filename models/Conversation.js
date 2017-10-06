@@ -24,7 +24,12 @@ ConversationSchema.method({
     );
   },
 
-  sendRandomMessage(cb) {
+  sendRandomMessage(callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
     this.getRandomMessage((err, message) => {
       if (err) {
         cb(err);
