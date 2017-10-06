@@ -60,11 +60,7 @@ ConversationSchema.method({
 
   sendRandomMessageEvery(interval) {
     setInterval(() => {
-      this.sendRandomMessage((err) => {
-        if (err) {
-          return err;
-        }
-      });
+      this.sendRandomMessage();
     }, interval);
   },
 });
