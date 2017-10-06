@@ -93,4 +93,15 @@ router.put('/:id/send-random-message', (req, res) => {
   });
 });
 
+router.put('/:id/send-random-message-every', (req, res) => {
+  Conversation.findById(req.params.id, (err, conversation) => {
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+
+    conversation.sendRandomMessageEvery(req.query.interval);
+    res.status(200).end();
+  });
+});
 module.exports = router;
