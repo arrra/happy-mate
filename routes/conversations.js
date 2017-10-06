@@ -60,36 +60,13 @@ router.put('/:id/send-random-message', (req, res) => {
       return;
     }
 
-    conversation.getRandomMessage((err, message) => {
+    conversation.sendRandomMessage((err, conversation) => {
       if (err) {
         res.status(500).json(err);
-        return;
+      } else {
+        res.status(200).json(conversation);
       }
-
-      const subject = 'Important email';
-      const mail = new Mail(
-        conversation.to_email,
-        conversation.from_email,
-        subject,
-        message.body,
-        process.env.TEMPLATE_ID,
-      );
-
-      mail.sendEmail((err) => {
-        if (err) {
-          res.status(500).json(err);
-          return;
-        }
-
-        conversation.addNewMessage(message, (err) => {
-          if (err) {
-            res.status(500).json(err);
-          } else {
-            res.status(200).json(conversation);
-          }
-        });
-      });
-    });
+    })
   });
 });
 
