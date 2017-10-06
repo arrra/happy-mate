@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const util = require('../util');
+const Mail = require('../classes/Mail');
 
 const Schema = mongoose.Schema;
 
@@ -23,9 +24,49 @@ ConversationSchema.method({
     );
   },
 
+  sendRandomMessage(callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
+    this.getRandomMessage((err, message) => {
+      if (err) {
+        cb(err);
+        return;
+      }
+
+      const subject = 'Important email';
+      const mail = new Mail(
+        this.to_email,
+        this.from_email,
+        subject,
+        message.body,
+        process.env.TEMPLATE_ID,
+      );
+
+      mail.sendEmail((err) => {
+        if (err) {
+          cb(err);
+          return;
+        }
+
+        this.addNewMessage(message, (err) => {
+          cb(err, this);
+        });
+      });
+    });
+  },
+
   getRandomMessage(cb) {
     const randomIndex = util.getRandomNumber(0, this.messagePool.length - 1);
     cb(null, this.messagePool[randomIndex]);
+  },
+
+  sendRandomMessageEvery(interval) {
+    setInterval(() => {
+      this.sendRandomMessage();
+    }, interval);
   },
 });
 
