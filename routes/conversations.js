@@ -1,9 +1,19 @@
 const Router = require('express').Router;
 const Conversation = require('../models/Conversation');
-const Message = require('../models/Message');
 const Mail = require('../classes/Mail');
 
 const router = Router();
+
+router.put('/:id', (req, res) => {
+  Conversation.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, conversation) => {
+    if (err || !conversation) {
+      res.status(404).json(err);
+      return;
+    }
+
+    res.status(200).json(conversation);
+  });
+});
 
 router.get('/:id', (req, res) => {
   Conversation.findById(req.params.id, (err, conversation) => {
@@ -43,14 +53,14 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id/messages', (req, res) => {
+router.put('/:id/send-random-message', (req, res) => {
   Conversation.findById(req.params.id, (err, conversation) => {
     if (err) {
       res.status(404).json(err);
       return;
     }
 
-    Message.getRandomMessage((err, message) => {
+    conversation.getRandomMessage((err, message) => {
       if (err) {
         res.status(500).json(err);
         return;

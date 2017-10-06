@@ -12,11 +12,6 @@ const getOrCreateConversation = (params) => {
     .catch(() => axios.post(url, params).then(res => res.data));
 };
 
-const sendRandomMessage = (conversation) => {
-  const putUrl = `${url}/${conversation._id}/messages`;
-  return axios.put(putUrl).then(res => res.data);
-};
-
 class SendMessageForm extends React.Component {
   constructor(props) {
     super(props);
@@ -31,14 +26,12 @@ class SendMessageForm extends React.Component {
       to_email: this.toEmailInput.value,
     };
     getOrCreateConversation(params)
-      .then(conversation => sendRandomMessage(conversation)
-        .then(() => {
-          const conversationPath = `/conversations/${conversation._id}`;
-          this.props.history.push(conversationPath);
-        }),
-      )
+      .then((conversation) => {
+        const conversationPath = `/conversations/${conversation._id}`;
+        this.props.history.push(conversationPath);
+      })
       .catch(() => {
-        window.alert('Error: Email not sent');
+        window.alert('Error: Failed to create or get conversation');
       });
   }
 
