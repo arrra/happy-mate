@@ -61,12 +61,11 @@ ConversationSchema.method({
   sendRandomMessageEvery(interval) {
     setInterval(() => {
       this.sendRandomMessage((err) => {
-        if(err) {
+        if (err) {
           return err;
         }
       });
-    }, interval)
-
+    }, interval);
   },
 });
 

@@ -54,7 +54,9 @@ class ConversationPage extends React.Component {
 
     return (
       <div>
-        <h1>Email will be sent every 24 hours for now. Will be able to set your own interval later updates</h1>
+        <h1>Email will be sent every 24 hours for now.
+          Will be able to set your own interval later updates.
+        </h1>
         <h1>{`From: ${this.state.conversation.from_email}`}</h1>
         <h1>{`To: ${this.state.conversation.to_email}`}</h1>
         <button onClick={this.handleSendRandomMessageClick}>Send Random Message</button>

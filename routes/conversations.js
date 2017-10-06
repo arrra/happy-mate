@@ -1,6 +1,5 @@
 const Router = require('express').Router;
 const Conversation = require('../models/Conversation');
-const Mail = require('../classes/Mail');
 
 const router = Router();
 
@@ -66,7 +65,7 @@ router.put('/:id/send-random-message', (req, res) => {
       } else {
         res.status(200).json(conversation);
       }
-    })
+    });
   });
 });
 
