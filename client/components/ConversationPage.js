@@ -12,7 +12,8 @@ const getConversation = (id) => {
 };
 
 const sendRandomMessage = (conversation) => {
-  const putUrl = `${baseUrl}/${conversation._id}/send-random-message-every?interval=86400000`;
+  const dayInterval = 86400000;
+  const putUrl = `${baseUrl}/${conversation._id}/send-random-message-every?interval=${dayInterval}`;
   return axios.put(putUrl).then(res => res.data);
 };
 
