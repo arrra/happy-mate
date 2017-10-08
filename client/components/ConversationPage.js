@@ -56,6 +56,7 @@ class ConversationPage extends React.Component {
     if (!this.state.conversation.emailVerified) {
       console.log(this.state.conversation)
       window.alert('Your email is not verified. Please click the link in your email to verify and refresh the page');
+      return null;
     } else {
       return (
         <div>
