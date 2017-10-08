@@ -53,10 +53,14 @@ class ConversationPage extends React.Component {
   render() {
     if (this.state.conversation === null) return null;
 
-    return (
-      <div>
-        <h1>Email will be sent every 24 hours for now.
-          Will be able to set your own interval later updates.
+    if (!this.state.conversation.emailVerified) {
+      console.log(this.state.conversation)
+      window.alert('Your email is not verified. Please click the link in your email to verify and refresh the page');
+    } else {
+      return (
+        <div>
+          <h1>Email will be sent every 24 hours for now.
+        Will be able to set your own interval later updates.
         </h1>
         <h1>{`From: ${this.state.conversation.from_email}`}</h1>
         <h1>{`To: ${this.state.conversation.to_email}`}</h1>
@@ -67,7 +71,8 @@ class ConversationPage extends React.Component {
           onConversationUpdate={this.handleConversationUpdate}
         />
       </div>
-    );
+      );
+    }
   }
 }
 
