@@ -5,13 +5,17 @@ const Mail = require('../classes/Mail');
 const router = Router();
 
 router.get('/:id', (req, res) => {
-  Conversation.findByIdAndUpdate(req.params.id, {emailVerified: true}, { new: true }, (err, conversation) => {
-    if(err){
-      res.status(500).json(err);
-      return;
-    }
-    res.status(200).json(conversation);
-  });
+  Conversation.findByIdAndUpdate(
+    req.params.id,
+    { emailVerified: true },
+    { new: true },
+    (err, conversation) => {
+      if (err) {
+        res.status(500).json(err);
+        return;
+      }
+      res.status(200).json(conversation);
+    });
 });
 
 router.put('/:id/send-confirmation', (req, res) => {
@@ -22,7 +26,7 @@ router.put('/:id/send-confirmation', (req, res) => {
     }
     const subject = 'Verify your email';
     const from = 'ssing128@gmail.com';
-    const body = 'http://localhost:8080/#/confirmation/'+conversation._id;
+    const body = `http://localhost:8080/#/confirmation/${conversation._id}`;
     const mail = new Mail(
       conversation.to_email,
       from,

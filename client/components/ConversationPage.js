@@ -55,10 +55,10 @@ class ConversationPage extends React.Component {
     if (this.state.conversation.emailVerified === false) {
       window.alert('Your email is not verified. Please click the link in your email to verify and refresh the page');
       return null;
-    } else {
-      return (
-        <div>
-          <h1>Email will be sent every 24 hours for now.
+    }
+    return (
+      <div>
+        <h1>Email will be sent every 24 hours for now.
         Will be able to set your own interval later updates.
         </h1>
         <h1>{`From: ${this.state.conversation.from_email}`}</h1>
@@ -70,8 +70,7 @@ class ConversationPage extends React.Component {
           onConversationUpdate={this.handleConversationUpdate}
         />
       </div>
-      );
-    }
+    );
   }
 }
 

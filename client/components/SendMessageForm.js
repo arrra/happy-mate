@@ -16,8 +16,8 @@ const getOrCreateConversation = (params) => {
 const sendConfirmationLink = (conversationId) => {
   const sendConfirmationUrl = `${confirmationUrl}/${conversationId}/send-confirmation`;
   return axios.put(sendConfirmationUrl)
-    .then(res => res.data)
-}
+    .then(res => res.data);
+};
 class SendMessageForm extends React.Component {
   constructor(props) {
     super(props);
