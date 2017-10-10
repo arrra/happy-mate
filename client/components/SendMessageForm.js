@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 const url = 'http://localhost:3000/conversations';
@@ -85,9 +84,5 @@ class SendMessageForm extends React.Component {
     );
   }
 }
-
-SendMessageForm.propTypes = {
-  history: PropTypes.object.isRequired,
-};
 
 export default withRouter(SendMessageForm);
