@@ -81,4 +81,24 @@ router.put('/:id/send-random-message-every', (req, res) => {
     res.status(200).json(conversation);
   });
 });
+
+router.put('/:id/verify', (req, res) => {
+  Conversation.findById(req.params.id, (err, conversation) => {
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+    if(conversation.verifyToken === req.query.token){
+      conversation.verifyToken = '';
+      conversation.save((err) => {
+        if(err) {
+          res.status(404).json(err);
+        }
+        res.status(200).json(conversation);
+      });
+    } else {
+      res.status(400).end();
+    }
+  });
+});
 module.exports = router;
