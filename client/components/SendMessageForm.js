@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 const url = 'http://localhost:3000/conversations';
+const confirmationUrl = 'http://localhost:3000/confirmation';
 
 const getOrCreateConversation = (params) => {
   const getUrl = `${url}?from_email=${params.from_email}&to_email=${params.to_email}`;
@@ -12,6 +13,11 @@ const getOrCreateConversation = (params) => {
     .catch(() => axios.post(url, params).then(res => res.data));
 };
 
+const sendConfirmationLink = (conversationId) => {
+  const sendConfirmationUrl = `${confirmationUrl}/${conversationId}/send-confirmation`;
+  return axios.put(sendConfirmationUrl)
+    .then(res => res.data)
+}
 class SendMessageForm extends React.Component {
   constructor(props) {
     super(props);
@@ -27,8 +33,8 @@ class SendMessageForm extends React.Component {
     };
     getOrCreateConversation(params)
       .then((conversation) => {
-        const conversationPath = `/conversations/${conversation._id}`;
-        this.props.history.push(conversationPath);
+        sendConfirmationLink(conversation._id);
+        window.alert('please click the link in your email to verify');
       })
       .catch(() => {
         window.alert('Error: Failed to create or get conversation');
