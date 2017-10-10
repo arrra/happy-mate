@@ -6,6 +6,7 @@ import {
 import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
+import ConfirmationPage from './ConfirmationPage';
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,12 @@ class App extends React.Component {
           <Route
             path="/conversations/:id"
             render={props => (<ConversationPage
+              conversationId={props.match.params.id}
+            />)}
+          />
+          <Route
+            path="/confirmation/:id"
+            render={props => (<ConfirmationPage
               conversationId={props.match.params.id}
             />)}
           />
