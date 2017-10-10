@@ -77,7 +77,7 @@ router.put('/:id/send-random-message-every', (req, res) => {
     }
 
     conversation.sendRandomMessageEvery(req.query.interval);
-    res.status(200).end();
+    res.status(200).json(conversation);
   });
 });
 module.exports = router;
