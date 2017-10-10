@@ -38,17 +38,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const conversation = new Conversation({
+  let conversation = new Conversation({
     from_email: req.body.from_email,
     to_email: req.body.to_email,
   });
+  conversation.verifyToken = conversation.generateToken();
 
   conversation.save((err) => {
     if (err) {
       res.status(400).json(err);
-    } else {
-      res.status(201).json(conversation);
     }
+    conversation.sendVerificationEmail();
+    res.status(200).json(conversation);
   });
 });
 

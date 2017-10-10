@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const util = require('../util');
 const Mail = require('../classes/Mail');
+const uuidv4 = require('uuid/v4');
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +11,7 @@ const ConversationSchema = new Schema({
   sent_messages: { type: Array },
   messagePool: { type: Array },
   emailVerified: { type: Boolean, default: false },
-  verifyToken: { type: Number },
+  verifyToken: { type: String },
 });
 
 ConversationSchema.method({
@@ -69,6 +70,30 @@ ConversationSchema.method({
     setInterval(() => {
       this.sendRandomMessage();
     }, interval);
+  },
+
+  generateToken() {
+    return uuidv4();
+  },
+
+  sendVerificationEmail(cb) {
+    const subject = 'Verify your email';
+    const from = 'ssing128@gmail.com';
+    const body = `http://localhost:8080/#/conversations/${this._id}/verify?token=${this.verifyToken}`;
+    const mail = new Mail(
+      this.to_email,
+      from,
+      subject,
+      body,
+      process.env.CONFIRMATION_EMAIL_TEMPLATE_ID,
+    );
+
+    mail.sendEmail((err) => {
+      if (err) {
+        cb(err);
+        return;
+      }
+    });
   },
 });
 

@@ -12,11 +12,6 @@ const getOrCreateConversation = (params) => {
     .catch(() => axios.post(url, params).then(res => res.data));
 };
 
-const sendConfirmationLink = (conversationId) => {
-  const sendConfirmationUrl = `${confirmationUrl}/${conversationId}/send-confirmation`;
-  return axios.put(sendConfirmationUrl)
-    .then(res => res.data);
-};
 class SendMessageForm extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +27,6 @@ class SendMessageForm extends React.Component {
     };
     getOrCreateConversation(params)
       .then((conversation) => {
-        sendConfirmationLink(conversation._id);
         window.alert('please click the link in your email to verify');
       })
       .catch(() => {
