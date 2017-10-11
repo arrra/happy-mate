@@ -87,11 +87,7 @@ ConversationSchema.method({
       process.env.CONFIRMATION_EMAIL_TEMPLATE_ID,
     );
 
-    mail.sendEmail((err) => {
-      if (err) {
-        cb(err);
-      }
-    });
+    mail.sendEmail(cb);
   },
 
   verifyTokenEmail(queryToken, cb) {
