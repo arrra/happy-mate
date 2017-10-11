@@ -95,6 +95,15 @@ ConversationSchema.method({
       }
     });
   },
+
+  verifyTokenEmail(queryToken, cb) {
+    if (this.verifyToken === queryToken) {
+      this.verifyToken = ''
+      this.save((err) => {
+        cb(err, this);
+      })
+    }
+  },
 });
 
 const Conversation = mongoose.model('Conversation', ConversationSchema);

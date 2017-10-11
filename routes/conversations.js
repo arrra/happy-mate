@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  let conversation = new Conversation({
+  const conversation = new Conversation({
     from_email: req.body.from_email,
     to_email: req.body.to_email,
   });
@@ -88,17 +88,13 @@ router.put('/:id/verify', (req, res) => {
       res.status(404).json(err);
       return;
     }
-    if(conversation.verifyToken === req.query.token){
-      conversation.verifyToken = '';
-      conversation.save((err) => {
-        if(err) {
-          res.status(404).json(err);
-        }
-        res.status(200).json(conversation);
-      });
-    } else {
-      res.status(400).end();
-    }
+    conversation.verifyTokenEmail(req.query.token, (err, conversation) => {
+      if(err){
+        res.status(404).json(err);
+        return;
+      }
+      res.status(200).end()
+    });
   });
 });
 module.exports = router;
