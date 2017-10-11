@@ -88,12 +88,12 @@ router.put('/:id/verify', (req, res) => {
       res.status(404).json(err);
       return;
     }
-    conversation.verifyTokenEmail(req.query.token, (err, conversation) => {
-      if(err){
+    conversation.verifyTokenEmail(req.query.token, (err) => {
+      if (err) {
         res.status(404).json(err);
         return;
       }
-      res.status(200).end()
+      res.status(200).end();
     });
   });
 });

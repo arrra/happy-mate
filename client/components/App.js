@@ -6,7 +6,6 @@ import {
 import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
-import ConfirmationPage from './ConfirmationPage';
 import VerificationPage from './VerificationPage';
 
 class App extends React.Component {

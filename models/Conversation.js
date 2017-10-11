@@ -91,17 +91,16 @@ ConversationSchema.method({
     mail.sendEmail((err) => {
       if (err) {
         cb(err);
-        return;
       }
     });
   },
 
   verifyTokenEmail(queryToken, cb) {
     if (this.verifyToken === queryToken) {
-      this.verifyToken = ''
+      this.verifyToken = '';
       this.save((err) => {
         cb(err, this);
-      })
+      });
     }
   },
 });

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 
 const url = 'http://localhost:3000/conversations';
-const confirmationUrl = 'http://localhost:3000/confirmation';
 
 const getOrCreateConversation = (params) => {
   const getUrl = `${url}?from_email=${params.from_email}&to_email=${params.to_email}`;
@@ -26,7 +25,7 @@ class SendMessageForm extends React.Component {
       to_email: this.toEmailInput.value,
     };
     getOrCreateConversation(params)
-      .then((conversation) => {
+      .then(() => {
         window.alert('please click the link in your email to verify');
       })
       .catch(() => {

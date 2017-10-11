@@ -1,17 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-const queryString = require('query-string');
 import { withRouter } from 'react-router';
-import {
-  Redirect,
-} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+
+const queryString = require('query-string');
 
 const baseUrl = 'http://localhost:3000/conversations';
-
-const verifyEmail = (conversationId, putUrl) => {
-  return axios.put(putUrl).then(res => res);
-};
+const verifyEmail = (conversationId, putUrl) => axios.put(putUrl).then(res => res);
 
 class VerificationPage extends React.Component {
   constructor(props) {
@@ -19,8 +15,8 @@ class VerificationPage extends React.Component {
     this.state = { verified: false };
   }
   componentDidMount() {
-  const parsed = queryString.parse(this.props.location.search);
-  const putUrl = `${baseUrl}/${this.props.conversationId}/verify?token=${parsed.token}`;
+    const parsed = queryString.parse(this.props.location.search);
+    const putUrl = `${baseUrl}/${this.props.conversationId}/verify?token=${parsed.token}`;
     verifyEmail(this.props.conversationId, putUrl)
       .then((res) => {
         if (res.status === 200) {
@@ -45,6 +41,7 @@ class VerificationPage extends React.Component {
 
 VerificationPage.propTypes = {
   conversationId: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withRouter(VerificationPage);
