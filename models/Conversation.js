@@ -4,7 +4,7 @@ const Mail = require('../classes/Mail');
 const uuidv4 = require('uuid/v4');
 
 const Schema = mongoose.Schema;
-const fromService = 'ssing128@gmail.com';
+const serviceEmail = 'ssing128@gmail.com';
 
 const ConversationSchema = new Schema({
   from_email: { type: String, required: true },
@@ -82,7 +82,7 @@ ConversationSchema.method({
     const body = `http://localhost:8080/#/conversations/${this._id}/verify?token=${this.verifyToken}`;
     const mail = new Mail(
       this.to_email,
-      fromService,
+      serviceEmail,
       subject,
       body,
       process.env.CONFIRMATION_EMAIL_TEMPLATE_ID,
