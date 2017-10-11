@@ -28,10 +28,13 @@ class App extends React.Component {
           <Route
             exact
             path="/conversations/:id/verify"
-            render={props => (<VerificationPage
+            render={(props) => {
+              const parsed = queryString.parse(props.location.search);
+              return(
+              <VerificationPage
               conversationId={props.match.params.id}
-              verifyToken={queryString.parse(props.location.search).token}
-            />)}
+              verifyToken={parsed.token}
+            />)}}
           />
         </div>
       </Router>
