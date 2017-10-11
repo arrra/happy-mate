@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
 const baseUrl = 'http://localhost:3000/conversations';
-const verifyEmail = (conversationId, putUrl) => axios.put(putUrl).then(res => res);
+const verifyEmail = (conversationId, verifyToken) => axios.put(`${baseUrl}/${conversationId}/verify?token=${verifyToken}`)
 
 class VerificationPage extends React.Component {
   constructor(props) {
