@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
-const queryString = require('query-string');
-
 const baseUrl = 'http://localhost:3000/conversations';
 const verifyEmail = (conversationId, putUrl) => axios.put(putUrl).then(res => res);
 
@@ -23,11 +21,11 @@ class VerificationPage extends React.Component {
         }
       })
       .catch((err) => {
-        if(err.response.status === 404){
+        if (err.response.status === 404) {
           this.setState({ verified: false });
           window.alert('Token was not match');
         }
-      })
+      });
   }
 
   render() {

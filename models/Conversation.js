@@ -101,9 +101,9 @@ ConversationSchema.method({
       this.save((err) => {
         cb(err, this);
       });
-    } else if(this.verifyToken !== queryToken) {
-      let err = {tokenMatch: false};
-      cb(err)
+    } else if (this.verifyToken !== queryToken) {
+      const err = { tokenMatch: false };
+      cb(err);
     }
   },
 });
