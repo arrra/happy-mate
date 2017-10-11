@@ -126,7 +126,6 @@ ConversationSchema.method({
 
     if (this.verifyToken === queryToken) {
       this.verifyToken = '';
-      this.isVerified = true;
       this.save((err) => {
         cb(err, this);
       });
