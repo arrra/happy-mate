@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
 const baseUrl = 'http://localhost:3000/conversations';
@@ -42,4 +41,4 @@ VerificationPage.propTypes = {
   verifyToken: PropTypes.string.isRequired,
 };
 
-export default withRouter(VerificationPage);
+export default VerificationPage;
