@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
 import ConfirmationPage from './ConfirmationPage';
+import VerificationPage from './VerificationPage';
 
 class App extends React.Component {
   render() {
@@ -22,8 +23,9 @@ class App extends React.Component {
             />)}
           />
           <Route
-            path="/confirmation/:id"
-            render={props => (<ConfirmationPage
+            exact
+            path="/conversations/:id/verify"
+            render={props => (<VerificationPage
               conversationId={props.match.params.id}
             />)}
           />
