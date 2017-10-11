@@ -60,8 +60,8 @@ router.put('/:id/send-random-message', (req, res) => {
       return;
     }
 
-    if(!conversation.isVerified){
-      res.status(400).json({error: 'User is not verified'});
+    if (!conversation.isVerified) {
+      res.status(400).json({ error: 'User is not verified' });
       return;
     }
 
@@ -82,8 +82,8 @@ router.put('/:id/send-random-message-every', (req, res) => {
       return;
     }
 
-    if(!conversation.isVerified){
-      res.status(400).json({error: 'User is not verified'});
+    if (!conversation.isVerified) {
+      res.status(400).json({ error: 'User is not verified' });
       return;
     }
 
