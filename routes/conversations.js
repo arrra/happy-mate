@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
     }
     conversation.sendVerificationEmail();
-    res.status(200).json(conversation);
+    res.status(201).json(conversation);
   });
 });
 
