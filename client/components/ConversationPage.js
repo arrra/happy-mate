@@ -52,6 +52,10 @@ class ConversationPage extends React.Component {
 
   render() {
     if (this.state.conversation === null) return null;
+    if (!this.state.conversation.isVerified){
+      window.alert('your email is not verified')
+      return null;
+    }
     return (
       <div>
         <h1>Email will be sent every 24 hours for now.

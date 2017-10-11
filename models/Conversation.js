@@ -12,6 +12,7 @@ const ConversationSchema = new Schema({
   sent_messages: { type: Array },
   messagePool: { type: Array },
   verifyToken: { type: String },
+  isVerified: { type: Boolean },
 });
 
 ConversationSchema.method({
