@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 const url = 'http://localhost:3000/conversations';
@@ -26,9 +25,8 @@ class SendMessageForm extends React.Component {
       to_email: this.toEmailInput.value,
     };
     getOrCreateConversation(params)
-      .then((conversation) => {
-        const conversationPath = `/conversations/${conversation._id}`;
-        this.props.history.push(conversationPath);
+      .then(() => {
+        window.alert('please click the link in your email to verify');
       })
       .catch(() => {
         window.alert('Error: Failed to create or get conversation');
@@ -79,9 +77,5 @@ class SendMessageForm extends React.Component {
     );
   }
 }
-
-SendMessageForm.propTypes = {
-  history: PropTypes.object.isRequired,
-};
 
 export default withRouter(SendMessageForm);

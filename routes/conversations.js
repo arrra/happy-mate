@@ -42,13 +42,14 @@ router.post('/', (req, res) => {
     from_email: req.body.from_email,
     to_email: req.body.to_email,
   });
+  conversation.verifyToken = conversation.generateToken();
 
   conversation.save((err) => {
     if (err) {
       res.status(400).json(err);
-    } else {
-      res.status(201).json(conversation);
     }
+    conversation.sendVerificationEmail();
+    res.status(201).json(conversation);
   });
 });
 
@@ -56,6 +57,11 @@ router.put('/:id/send-random-message', (req, res) => {
   Conversation.findById(req.params.id, (err, conversation) => {
     if (err) {
       res.status(404).json(err);
+      return;
+    }
+
+    if (!conversation.isVerified) {
+      res.status(400).json({ error: 'User is not verified' });
       return;
     }
 
@@ -76,8 +82,29 @@ router.put('/:id/send-random-message-every', (req, res) => {
       return;
     }
 
+    if (!conversation.isVerified) {
+      res.status(400).json({ error: 'User is not verified' });
+      return;
+    }
+
     conversation.sendRandomMessageEvery(req.query.interval);
     res.status(200).end();
+  });
+});
+
+router.put('/:id/verify', (req, res) => {
+  Conversation.findById(req.params.id, (err, conversation) => {
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+    conversation.verifyTokenEmail(req.query.token, (err) => {
+      if (err) {
+        res.status(404).json(err);
+        return;
+      }
+      res.status(200).end();
+    });
   });
 });
 module.exports = router;
