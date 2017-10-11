@@ -12,15 +12,19 @@ const ConversationSchema = new Schema({
   sent_messages: { type: Array },
   messagePool: { type: Array },
   verifyToken: { type: String },
-  isVerified: { type: Boolean },
 });
 
 ConversationSchema.set('toJSON', {
+  virtuals: true,
   transform: (doc, ret, options) => {
     delete ret.verifyToken;
     return ret;
   }
 });
+
+ConversationSchema.virtual('isVerified').get( function() {
+  return this.verifyToken === '';
+})
 
 ConversationSchema.method({
   addNewMessage(message, callback) {
