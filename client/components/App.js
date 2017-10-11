@@ -30,11 +30,12 @@ class App extends React.Component {
             path="/conversations/:id/verify"
             render={(props) => {
               const parsed = queryString.parse(props.location.search);
-              return(
-              <VerificationPage
-              conversationId={props.match.params.id}
-              verifyToken={parsed.token}
-            />)}}
+              return (
+                <VerificationPage
+                  conversationId={props.match.params.id}
+                  verifyToken={parsed.token}
+                />);
+            }}
           />
         </div>
       </Router>

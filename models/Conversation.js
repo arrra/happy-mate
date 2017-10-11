@@ -97,7 +97,7 @@ ConversationSchema.method({
         cb(err, this);
       });
     } else {
-      const err = new Error('Verification token does not match.')
+      const err = new Error('Verification token does not match.');
       cb(err, null);
     }
   },
