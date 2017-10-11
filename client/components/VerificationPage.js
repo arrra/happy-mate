@@ -13,18 +13,13 @@ class VerificationPage extends React.Component {
     this.state = { verified: false };
   }
   componentDidMount() {
-    const putUrl = `${baseUrl}/${this.props.conversationId}/verify?token=${this.props.verifyToken}`;
-    verifyEmail(this.props.conversationId, putUrl)
-      .then((res) => {
-        if (res.status === 200) {
-          this.setState({ verified: true });
-        }
+    verifyEmail(this.props.conversationId, this.props.verifyToken)
+      .then(() => {
+        this.setState({ verified: true });
       })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          this.setState({ verified: false });
-          window.alert('Token was not match');
-        }
+      .catch(() => {
+        this.setState({ verified: false });
+        window.alert('Token was not match');
       });
   }
 
