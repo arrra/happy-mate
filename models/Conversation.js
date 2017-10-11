@@ -16,7 +16,12 @@ const ConversationSchema = new Schema({
 });
 
 ConversationSchema.method({
-  addNewMessage(message, cb) {
+  addNewMessage(message, callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
     const sentMessages = this.sent_messages.slice();
     sentMessages.push(message);
 
@@ -62,7 +67,12 @@ ConversationSchema.method({
     });
   },
 
-  getRandomMessage(cb) {
+  getRandomMessage(callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
     const randomIndex = util.getRandomNumber(0, this.messagePool.length - 1);
     cb(null, this.messagePool[randomIndex]);
   },
@@ -77,7 +87,12 @@ ConversationSchema.method({
     return uuidv4();
   },
 
-  sendVerificationEmail(cb) {
+  sendVerificationEmail(callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
     const subject = 'Verify your email';
     const body = `http://localhost:8080/#/conversations/${this._id}/verify?token=${this.verifyToken}`;
     const mail = new Mail(
@@ -91,9 +106,15 @@ ConversationSchema.method({
     mail.sendEmail(cb);
   },
 
-  verifyTokenEmail(queryToken, cb) {
+  verifyTokenEmail(queryToken, callback) {
+    let cb = callback;
+    if (!(cb instanceof Function)) {
+      cb = () => {};
+    }
+
     if (this.verifyToken === queryToken) {
       this.verifyToken = '';
+      this.isVerified = true;
       this.save((err) => {
         cb(err, this);
       });
