@@ -21,11 +21,17 @@ class VerificationPage extends React.Component {
         if (res.status === 200) {
           this.setState({ verified: true });
         }
-      });
+      })
+      .catch((err) => {
+        if(err.response.status === 404){
+          this.setState({ verified: false });
+          window.alert('Token was not match');
+        }
+      })
   }
 
   render() {
-    if (this.state.verified === false) return null;
+    if (!this.state.verified) return null;
     return (
       <div>
         <p>Confirming your email...Please wait.</p>
