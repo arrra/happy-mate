@@ -15,8 +15,7 @@ class VerificationPage extends React.Component {
     this.state = { verified: false };
   }
   componentDidMount() {
-    const parsed = queryString.parse(this.props.location.search);
-    const putUrl = `${baseUrl}/${this.props.conversationId}/verify?token=${parsed.token}`;
+    const putUrl = `${baseUrl}/${this.props.conversationId}/verify?token=${this.props.verifyToken}`;
     verifyEmail(this.props.conversationId, putUrl)
       .then((res) => {
         if (res.status === 200) {
@@ -41,7 +40,7 @@ class VerificationPage extends React.Component {
 
 VerificationPage.propTypes = {
   conversationId: PropTypes.string.isRequired,
-  location: PropTypes.object.isRequired,
+  verifyToken: PropTypes.string.isRequired,
 };
 
 export default withRouter(VerificationPage);
