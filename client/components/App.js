@@ -18,6 +18,7 @@ class App extends React.Component {
           <Navbar />
           <Route exact path="/" component={SendMessageForm} />
           <Route
+            exact
             path="/conversations/:id"
             render={props => (<ConversationPage
               conversationId={props.match.params.id}
