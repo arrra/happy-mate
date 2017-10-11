@@ -15,6 +15,13 @@ const ConversationSchema = new Schema({
   isVerified: { type: Boolean },
 });
 
+ConversationSchema.set('toJSON', {
+  transform: (doc, ret, options) => {
+    delete ret.verifyToken;
+    return ret;
+  }
+});
+
 ConversationSchema.method({
   addNewMessage(message, callback) {
     let cb = callback;
