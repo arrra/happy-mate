@@ -3,11 +3,11 @@ import {
   HashRouter as Router,
   Route,
 } from 'react-router-dom';
+import queryString from 'query-string';
 import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
 import VerificationPage from './VerificationPage';
-import queryString from 'query-string';
 
 class App extends React.Component {
   render() {

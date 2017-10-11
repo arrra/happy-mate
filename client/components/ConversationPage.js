@@ -52,8 +52,8 @@ class ConversationPage extends React.Component {
 
   render() {
     if (this.state.conversation === null) return null;
-    if (!this.state.conversation.isVerified){
-      window.alert('your email is not verified')
+    if (!this.state.conversation.isVerified) {
+      window.alert('your email is not verified');
       return null;
     }
     return (
