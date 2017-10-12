@@ -11,6 +11,14 @@ const UserSchema = new Schema({
   conversation: [{ type: Schema.Types.ObjectId, ref: 'Conversation' }],
 });
 
+UserSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    const user = ret;
+    delete user.password;
+    return user;
+  },
+});
+
 UserSchema.pre('save', function () {
   const user = this;
 
@@ -24,6 +32,31 @@ UserSchema.pre('save', function () {
     });
   });
 });
+
+UserSchema.methods.comparePassword = function (password, cb) {
+  bcrypt.compare(password, this.password, (err, isMatch) => {
+    if (err) return cb(err);
+
+    cb(null, isMatch);
+  });
+};
+
+UserSchema.statics.authenticate = function (userName, password, cb) {
+  this.findOne({ userName }, (err, user) => {
+    if (err) return cb(err);
+
+    if (!user) return cb({ error: new Error('user not found') });
+
+    user.comparePassword(password, (err, isMatch) => {
+      if (err) return cb(err);
+
+      if (isMatch) {
+        return cb(null, user);
+      }
+      return cb({ error: 'invalid password' });
+    });
+  });
+};
 
 const User = mongoose.model('User', UserSchema);
 
