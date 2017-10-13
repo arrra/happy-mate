@@ -19,7 +19,7 @@ UserSchema.set('toJSON', {
   },
 });
 
-UserSchema.pre('save', function () {
+UserSchema.pre('save', function (next) {
   const user = this;
 
   bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -29,6 +29,7 @@ UserSchema.pre('save', function () {
       if (err) return err;
 
       user.password = hash;
+      next();
     });
   });
 });
