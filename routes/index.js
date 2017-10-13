@@ -5,15 +5,14 @@ const authenticate = require('./authenticate');
 const jwt = require('jsonwebtoken');
 
 const isAuthunicated = (req, res, next) => {
-  const token = req.body.token || req.headers['x-access-token'];
+  const token = req.cookies.token;
+
   if (token) {
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.SECRET, (err) => {
       if (err) {
-        console.log(err);
         return res.status(498).json({ error: 'unable to authenticate token' });
       }
 
-      req.decoded = decoded;
       next();
     });
   } else {

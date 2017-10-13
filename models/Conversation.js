@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const serviceEmail = 'ssing128@gmail.com';
 
 const ConversationSchema = new Schema({
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
   from_email: { type: String, required: true },
   to_email: { type: String, required: true },
   sent_messages: { type: Array },

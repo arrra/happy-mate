@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
 
     const token = jwt.sign(payload, process.env.SECRET);
 
-    res.status(200).json({ user, token });
+    res.cookie('token', token);
+    res.status(200).json(user);
   });
 });
 

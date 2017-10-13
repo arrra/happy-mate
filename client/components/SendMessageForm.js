@@ -6,9 +6,9 @@ const url = 'http://localhost:3000/conversations';
 
 const getOrCreateConversation = (params) => {
   const getUrl = `${url}?from_email=${params.from_email}&to_email=${params.to_email}`;
-  return axios.get(getUrl)
+  return axios.get(getUrl, { withCredentials: true })
     .then(res => res.data)
-    .catch(() => axios.post(url, params).then(res => res.data));
+    .catch(() => axios.post(url, params, { withCredentials: true }).then(res => res.data));
 };
 
 class SendMessageForm extends React.Component {

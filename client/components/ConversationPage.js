@@ -7,7 +7,7 @@ const baseUrl = 'http://localhost:3000/conversations';
 
 const getConversation = (id) => {
   const getUrl = `${baseUrl}/${id}`;
-  return axios.get(getUrl)
+  return axios.get(getUrl, { withCredentials: true })
     .then(res => res.data);
 };
 

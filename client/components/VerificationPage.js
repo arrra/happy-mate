@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 const baseUrl = 'http://localhost:3000/conversations';
-const verifyEmail = (conversationId, verifyToken) => axios.put(`${baseUrl}/${conversationId}/verify?token=${verifyToken}`);
+const verifyEmail = (conversationId, verifyToken) => axios.put(`${baseUrl}/${conversationId}/verify?token=${verifyToken}`, null, { withCredentials: true })
+  .then(res => res.data);
 
 class VerificationPage extends React.Component {
   constructor(props) {
