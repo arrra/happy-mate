@@ -7,7 +7,6 @@ const router = Router();
 router.post('/', (req, res) => {
   User.authenticate(req.body.userName, req.body.password, (err, user) => {
     if (err) {
-      console.log(err);
       res.status(400).json(err);
       return;
     }
