@@ -7,10 +7,21 @@ class LogIn extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const url = 'http://localhost:3000/authenticate';
-    return axios.post(url, { userName: this.userName.value, password: this.password.value }, { withCredentials: true })
-      .then(res => this.props.history.push(`/conversations/${res.data._id}`))
+    return axios.post(url, {
+      userName: this.userName.value,
+      password: this.password.value },
+    { withCredentials: true },
+    )
+      .then((res) => {
+        if (res.data.conversation) {
+          this.props.history.push(`/conversations/${res.data.conversation}`);
+        } else {
+          this.props.history.push('/');
+        }
+      })
       .catch(res => console.log(res));
   }
   render() {
