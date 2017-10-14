@@ -8,11 +8,12 @@ const isAuthunicated = (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
-    jwt.verify(token, process.env.SECRET, (err) => {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
         return res.status(498).json({ error: 'unable to authenticate token' });
       }
 
+      req.decoded = decoded;
       next();
     });
   } else {
