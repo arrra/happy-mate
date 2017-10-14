@@ -4,12 +4,7 @@ const User = require('../models/User');
 const router = Router();
 
 router.post('/', (req, res) => {
-  const user = new User({
-    userName: req.body.userName,
-    password: req.body.password,
-  });
-
-  user.save((err) => {
+  User.createUser(req.body.userName, req.body.password, (err, user) => {
     if (err) {
       res.status(500).json(err);
       return;
