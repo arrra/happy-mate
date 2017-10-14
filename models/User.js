@@ -60,8 +60,6 @@ UserSchema.statics.authenticate = function (userName, password, cb) {
   });
 };
 
-const User = mongoose.model('User', UserSchema);
-
 UserSchema.statics.createUser = function (userName, password, cb) {
   const user = new User({ userName, passwordHash: password });
 
@@ -72,5 +70,7 @@ UserSchema.statics.createUser = function (userName, password, cb) {
     cb(null, this);
   });
 };
+
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
