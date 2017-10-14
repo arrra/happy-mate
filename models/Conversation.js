@@ -109,7 +109,7 @@ ConversationSchema.method({
     const subject = 'Verify your email';
     const body = `http://localhost:8080/#/conversations/${this._id}/verify?token=${this.verifyToken}`;
     const mail = new Mail(
-      this.to_email,
+      this.from_email,
       serviceEmail,
       subject,
       body,
