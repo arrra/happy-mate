@@ -13,7 +13,7 @@ const isAuthunicated = (req, res, next) => {
         return res.status(498).json({ error: 'unable to authenticate token' });
       }
 
-      req.decoded = decoded;
+      req.user = decoded;
       next();
     });
   } else {

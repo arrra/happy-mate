@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.decoded.id) {
+    if (conversation.owner.toString() !== req.user.id) {
       res.status(401).json(err);
       return;
     }
@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
   const conversation = new Conversation({
     from_email: req.body.from_email,
     to_email: req.body.to_email,
-    owner: req.decoded.id,
+    owner: req.user.id,
   });
   conversation.verifyToken = conversation.generateToken();
 
