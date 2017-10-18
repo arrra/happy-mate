@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     }
 
     if (conversation.owner.toString() !== req.decoded.id) {
-      res.status(404).json(err);
+      res.status(401).json(err);
       return;
     }
     res.status(200).json(conversation);
