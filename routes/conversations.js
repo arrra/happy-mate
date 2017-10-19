@@ -10,6 +10,11 @@ router.put('/:id', (req, res) => {
       return;
     }
 
+    if (conversation.owner.toString() !== req.user.id) {
+      res.status(401).json(err);
+      return;
+    }
+
     res.status(200).json(conversation);
   });
 });
@@ -35,6 +40,9 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     } else if (conversation === null) {
       res.status(404).end();
+    } else if(conversation.owner.toString() !== req.user.id){
+      res.status(401).json(err);
+      return;
     } else {
       res.status(200).json(conversation);
     }
@@ -65,6 +73,11 @@ router.put('/:id/send-random-message', (req, res) => {
       return;
     }
 
+    if (conversation.owner.toString() !== req.user.id) {
+      res.status(401).json(err);
+      return;
+    }
+
     if (!conversation.isVerified) {
       res.status(400).json({ error: 'User is not verified' });
       return;
@@ -87,6 +100,11 @@ router.put('/:id/send-random-message-every', (req, res) => {
       return;
     }
 
+    if (conversation.owner.toString() !== req.user.id) {
+      res.status(401).json(err);
+      return;
+    }
+
     if (!conversation.isVerified) {
       res.status(400).json({ error: 'User is not verified' });
       return;
@@ -103,6 +121,12 @@ router.put('/:id/verify', (req, res) => {
       res.status(404).json(err);
       return;
     }
+
+    if (conversation.owner.toString() !== req.user.id) {
+      res.status(401).json(err);
+      return;
+    }
+
     conversation.verifyTokenEmail(req.query.token, (err) => {
       if (err) {
         res.status(404).json(err);
