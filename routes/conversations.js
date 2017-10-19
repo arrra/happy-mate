@@ -11,7 +11,7 @@ router.put('/:id', (req, res) => {
     }
 
     if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json({error: 'user not authorized'});
+      res.status(401).json({ error: 'user not authorized' });
       return;
     }
 
@@ -40,9 +40,8 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     } else if (conversation === null) {
       res.status(404).end();
-    } else if(conversation.owner.toString() !== req.user.id){
+    } else if (conversation.owner.toString() !== req.user.id) {
       res.status(401).json(err);
-      return;
     } else {
       res.status(200).json(conversation);
     }

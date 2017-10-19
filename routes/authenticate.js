@@ -14,7 +14,7 @@ const getAuthToken = (user) => {
   const token = jwt.sign(payload, process.env.SECRET);
 
   return token;
-}
+};
 
 router.post('/', (req, res) => {
   User.authenticate(req.body.userName, req.body.password, (err, user) => {

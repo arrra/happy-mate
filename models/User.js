@@ -28,6 +28,19 @@ UserSchema.methods.comparePassword = function (password, cb) {
   });
 };
 
+UserSchema.methods.setPassword = function (password, cb) {
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) return cb(err);
+
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) return cb(err);
+
+      this.passwordHash = hash;
+      cb(null);
+    });
+  });
+};
+
 UserSchema.statics.authenticate = function (userName, password, cb) {
   this.findOne({ userName }, (err, user) => {
     if (err) return cb(err);
@@ -46,22 +59,17 @@ UserSchema.statics.authenticate = function (userName, password, cb) {
 };
 
 UserSchema.statics.createUser = function (userName, password, cb) {
+  const user = new this({ userName });
 
-  bcrypt.genSalt(saltRounds, (err, salt) => {
+  user.setPassword(password, (err) => {
     if (err) return cb(err);
 
-    bcrypt.hash(password, salt, (err, hash) => {
-      if (err) return err;
+    user.save((err) => {
+      if (err) {
+        return cb(err);
+      }
 
-      const user = new User({ userName, passwordHash: hash });
-
-      user.save((err) => {
-        if (err) {
-          return cb(err);
-        }
-
-        cb(null, user);
-      });
+      cb(null, user);
     });
   });
 };
