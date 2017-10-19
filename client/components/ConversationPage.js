@@ -14,7 +14,7 @@ const getConversation = (id) => {
 const sendRandomMessage = (conversation) => {
   const dayInterval = 86400000;
   const putUrl = `${baseUrl}/${conversation._id}/send-random-message-every?interval=${dayInterval}`;
-  return axios.put(putUrl).then(res => res.data);
+  return axios.put(putUrl, null, {withCredentials: true}).then(res => res.data);
 };
 
 class ConversationPage extends React.Component {
