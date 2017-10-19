@@ -60,7 +60,7 @@ UserSchema.statics.createUser = function (userName, password, cb) {
           return cb(err);
         }
 
-        cb(null, this);
+        cb(null, user);
       });
     });
   });
