@@ -4,7 +4,7 @@ const users = require('./users');
 const authenticate = require('./authenticate');
 const jwt = require('jsonwebtoken');
 
-const isAuthunicated = (req, res, next) => {
+const authenticateUser = (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
@@ -22,8 +22,8 @@ const isAuthunicated = (req, res, next) => {
 };
 
 const attachRoutes = (app) => {
-  app.use('/emails', isAuthunicated, emails);
-  app.use('/conversations', isAuthunicated, conversations);
+  app.use('/emails', authenticateUser, emails);
+  app.use('/conversations', authenticateUser, conversations);
   app.use('/users', users);
   app.use('/authenticate', authenticate);
 };
