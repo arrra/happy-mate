@@ -6,7 +6,7 @@ const baseUrl = 'http://localhost:3000/conversations';
 
 const updateConversation = (id, update) => {
   const putUrl = `${baseUrl}/${id}`;
-  return axios.put(putUrl, update)
+  return axios.put(putUrl, update, { withCredentials: true })
     .then(res => res.data);
 };
 

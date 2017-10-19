@@ -7,14 +7,14 @@ const baseUrl = 'http://localhost:3000/conversations';
 
 const getConversation = (id) => {
   const getUrl = `${baseUrl}/${id}`;
-  return axios.get(getUrl)
+  return axios.get(getUrl, { withCredentials: true })
     .then(res => res.data);
 };
 
 const sendRandomMessage = (conversation) => {
   const dayInterval = 86400000;
   const putUrl = `${baseUrl}/${conversation._id}/send-random-message-every?interval=${dayInterval}`;
-  return axios.put(putUrl).then(res => res.data);
+  return axios.put(putUrl, null, { withCredentials: true }).then(res => res.data);
 };
 
 class ConversationPage extends React.Component {

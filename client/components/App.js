@@ -8,6 +8,8 @@ import Navbar from './Navbar';
 import SendMessageForm from './SendMessageForm';
 import ConversationPage from './ConversationPage';
 import VerificationPage from './VerificationPage';
+import SignUp from './SignUp';
+import LogIn from './LogIn';
 
 class App extends React.Component {
   render() {
@@ -15,6 +17,8 @@ class App extends React.Component {
       <Router>
         <div>
           <Navbar />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={LogIn} />
           <Route exact path="/" component={SendMessageForm} />
           <Route
             exact
