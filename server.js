@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 router.attachRoutes(app);
 
 app.use((req, res) => {
-  res.status(404).end();
+  res.status(404).json({ error: `no route matching ${req.method} ${req.path}` });
 });
 
 db.setupAndConnect((err) => {
