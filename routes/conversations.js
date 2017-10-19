@@ -52,8 +52,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  if(!req.user){
-    res.status(401).json({error: 'user not authorized'});
+  if (!req.user) {
+    res.status(401).json({ error: 'user not authorized' });
     return;
   }
 

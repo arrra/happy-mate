@@ -53,7 +53,7 @@ UserSchema.statics.authenticate = function (userName, password, cb) {
       if (isMatch) {
         return cb(null, user);
       }
-      return cb(new Error('invalid password'));
+      cb(new Error('invalid password'));
     });
   });
 };

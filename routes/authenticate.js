@@ -6,8 +6,6 @@ const router = Router();
 
 const getAuthToken = (user) => {
   const payload = {
-    iss: 'localhost:3000',
-    name: user.userName,
     id: user._id,
   };
 
