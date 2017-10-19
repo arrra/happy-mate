@@ -10,7 +10,7 @@ router.put('/:id', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.user.id) {
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
       res.status(401).json({ error: 'user not authorized' });
       return;
     }
@@ -26,34 +26,43 @@ router.get('/:id', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+      res.status(401).json({ error: 'user not authorized' });
       return;
     }
+
     res.status(200).json(conversation);
   });
 });
 
 router.get('/', (req, res) => {
   Conversation.findOne(req.query, (err, conversation) => {
-    if (err) {
-      res.status(500).json(err);
-    } else if (conversation === null) {
-      res.status(404).end();
-    } else if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
-    } else {
-      res.status(200).json(conversation);
+    if (err || !conversation) {
+      res.status(404).json(err);
+      return;
     }
+
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+      res.status(401).json({ error: 'user not authorized' });
+      return;
+    }
+
+    res.status(200).json(conversation);
   });
 });
 
 router.post('/', (req, res) => {
+  if(!req.user){
+    res.status(401).json({error: 'user not authorized'});
+    return;
+  }
+
   const conversation = new Conversation({
     from_email: req.body.from_email,
     to_email: req.body.to_email,
     owner: req.user.id,
   });
+
   conversation.verifyToken = conversation.generateToken();
 
   conversation.save((err) => {
@@ -72,8 +81,8 @@ router.put('/:id/send-random-message', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+      res.status(401).json({ error: 'user not authorized' });
       return;
     }
 
@@ -99,8 +108,8 @@ router.put('/:id/send-random-message-every', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+      res.status(401).json({ error: 'user not authorized' });
       return;
     }
 
@@ -121,8 +130,8 @@ router.put('/:id/verify', (req, res) => {
       return;
     }
 
-    if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
+    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+      res.status(401).json({ error: 'user not authorized' });
       return;
     }
 
