@@ -11,7 +11,7 @@ router.put('/:id', (req, res) => {
     }
 
     if (conversation.owner.toString() !== req.user.id) {
-      res.status(401).json(err);
+      res.status(401).json({error: 'user not authorized'});
       return;
     }
 

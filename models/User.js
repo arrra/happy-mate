@@ -22,7 +22,7 @@ UserSchema.set('toJSON', {
 
 UserSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.passwordHash, (err, isMatch) => {
-    if (err) return cb(err);
+    if (err) return cb(err, false);
 
     cb(null, isMatch);
   });
@@ -40,7 +40,7 @@ UserSchema.statics.authenticate = function (userName, password, cb) {
       if (isMatch) {
         return cb(null, user);
       }
-      return cb({ error: 'invalid password' });
+      return cb(new Error('invalid password'));
     });
   });
 };
@@ -48,7 +48,7 @@ UserSchema.statics.authenticate = function (userName, password, cb) {
 UserSchema.statics.createUser = function (userName, password, cb) {
 
   bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) return err;
+    if (err) return cb(err);
 
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) return err;
