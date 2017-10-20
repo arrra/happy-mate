@@ -23,22 +23,3 @@ const Navbar = () => (
 );
 
 export default Navbar;
-  // <!-- <div> -->
-  // <!--   <nav className="navbar is&#45;light" aria&#45;label="main navigation"> -->
-  // <!--     <div className="navbar&#45;brand"> -->
-  // <!--       <a className="navbar&#45;item" href="/"> -->
-  // <!--           Happy&#45;Mate -->
-  // <!--       </a> -->
-  // <!--     </div> -->
-  // <!--     <div className="navbar&#45;menu"> -->
-  // <!--       <div className="navbar&#45;end"> -->
-  // <!--         <div className="navbar&#45;item"> -->
-  // <!--           <Link to={'/signup'}>Sign up </Link> -->
-  // <!--         </div> -->
-  // <!--         <div className="navbar&#45;item"> -->
-  // <!--           <Link to={'/login'}>Log In</Link> -->
-  // <!--         </div> -->
-  // <!--       </div> -->
-  // <!--     </div> -->
-  // <!--   </nav> -->
-  // <!-- </div> -->
