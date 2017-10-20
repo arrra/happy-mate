@@ -23,6 +23,7 @@ class SignUp extends React.Component {
           <div className="column">
             <input
               className="u-full-width"
+              type="text"
               ref={(input) => { this.userName = input; }}
               placeholder="User Name"
             />
