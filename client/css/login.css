@@ -1,0 +1,13 @@
+.card {
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  text-align: center;
+  padding: 2.5em;
+  margin: 8em auto;
+}
+
+@media (min-width: 550px) {
+  .card {
+    max-width: 50%;
+  }
+}
