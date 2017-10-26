@@ -27,27 +27,25 @@ class LogIn extends React.Component {
   render() {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
-        <div className="title">
-          Please Log In with your credentials
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            ref={(input) => { this.userName = input; }}
-            placeholder="User Name"
-          />
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            ref={(input) => { this.password = input; }}
-            placeholder="Password"
-          />
-        </div>
-        <div className="field">
-          <p className="control">
-            <input type="submit"className="button is-success" />
-          </p>
+        <div className="column">
+          <div className="card">
+            <h5>Please login here</h5>
+            <div className="row">
+              <input
+                className="u-full-width"
+                ref={(input) => { this.userName = input; }}
+                placeholder="User Name"
+                type="text"
+              />
+              <input
+                className="u-full-width"
+                ref={(input) => { this.password = input; }}
+                placeholder="Password"
+                type="password"
+              />
+              <input type="submit" className="button-primary" />
+            </div>
+          </div>
         </div>
       </form>
     );
