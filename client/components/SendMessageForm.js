@@ -48,24 +48,12 @@ class SendMessageForm extends React.Component {
                 type="email"
                 placeholder="Email"
               />
-              <span className="icon is-small is-left">
-                <i className="fa fa-envelope" />
-              </span>
-              <span className="icon is-small is-right">
-                <i className="fa fa-check" />
-              </span>
               <input
                 className="u-full-width"
                 ref={(input) => { this.toEmailInput = input; }}
                 type="email"
                 placeholder="Reciepient Email"
               />
-              <span className="icon is-small is-left">
-                <i className="fa fa-envelope" />
-              </span>
-              <span className="icon is-small is-right">
-                <i className="fa fa-check" />
-              </span>
               <input type="submit" className="button-primary" />
             </div>
           </div>
