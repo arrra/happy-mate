@@ -35,43 +35,40 @@ class SendMessageForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input"
-              ref={(input) => { this.fromEmailInput = input; }}
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-small is-left">
-              <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fa fa-check" />
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input"
-              ref={(input) => { this.toEmailInput = input; }}
-              type="email"
-              placeholder="Reciepient Email"
-            />
-            <span className="icon is-small is-left">
-              <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fa fa-check" />
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          <p className="control">
-            <input type="submit"className="button is-success" />
-          </p>
+      <form className="container" onSubmit={this.handleSubmit}>
+        <div className="column">
+          <div className="card">
+            <div className="row">
+              <div className="instructions">
+                Enter your email and significant other email
+              </div>
+              <input
+                className="u-full-width"
+                ref={(input) => { this.fromEmailInput = input; }}
+                type="email"
+                placeholder="Email"
+              />
+              <span className="icon is-small is-left">
+                <i className="fa fa-envelope" />
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fa fa-check" />
+              </span>
+              <input
+                className="u-full-width"
+                ref={(input) => { this.toEmailInput = input; }}
+                type="email"
+                placeholder="Reciepient Email"
+              />
+              <span className="icon is-small is-left">
+                <i className="fa fa-envelope" />
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fa fa-check" />
+              </span>
+              <input type="submit" className="button-primary" />
+            </div>
+          </div>
         </div>
       </form>
     );
