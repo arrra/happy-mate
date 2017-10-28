@@ -5,7 +5,7 @@ const Navbar = () => (
   <div className="navbar">
     <div className="row">
       <div className="six columns">
-        <div className="navbar-links"> 
+        <div className="navbar-links">
           <ul>
             <li><Link to={'/'}>Happy Mate</Link></li>
           </ul>

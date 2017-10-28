@@ -35,7 +35,7 @@ class UserCreateMessageForm extends React.Component {
   render() {
     return (
       <div className="message-input">
-        <label>Enter A Message</label>
+        <h5>Enter A Message</h5>
         <div className="row">
           <div className="nine columns">
             <input

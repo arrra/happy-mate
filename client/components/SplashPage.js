@@ -9,15 +9,15 @@ class SplashPage extends React.Component {
           <div className="row">
             <div className="eight columns">
               <div className="title">
-                <h2>"I love you" emails - automated</h2>
+                <h2>&quot;I love you&quot; emails - automated</h2>
               </div>
               <div className="title-sub">
-                <h6>Now you dont have to take out time to send a cute email to your lover! We Automated it!</h6>
+                <h6>Now you dont have to take out time to send a cute email to your lover!
+                  We Automated it!</h6>
               </div>
             </div>
             <div className="one columns">
-              <div className="divider">
-              </div>
+              <div className="divider" />
             </div>
             <div className="three columns">
               <SignUpForm />
@@ -25,7 +25,7 @@ class SplashPage extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
