@@ -1,0 +1,12 @@
+.message-input {
+  padding-top: 4em;
+}
+
+.message-body {
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 1px;
+  max-width: 92%;
+}
