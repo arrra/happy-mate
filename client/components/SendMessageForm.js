@@ -36,27 +36,23 @@ class SendMessageForm extends React.Component {
   render() {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
-        <div className="column">
-          <div className="card">
-            <div className="row">
-              <div className="instructions">
-                Enter your email and significant other email
-              </div>
-              <input
-                className="u-full-width"
-                ref={(input) => { this.fromEmailInput = input; }}
-                type="email"
-                placeholder="Email"
-              />
-              <input
-                className="u-full-width"
-                ref={(input) => { this.toEmailInput = input; }}
-                type="email"
-                placeholder="Reciepient Email"
-              />
-              <input type="submit" className="button-primary" />
-            </div>
+        <div className="card">
+          <div className="instructions">
+            Enter your email and significant other email
           </div>
+          <input
+            className="u-full-width"
+            ref={(input) => { this.fromEmailInput = input; }}
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            className="u-full-width"
+            ref={(input) => { this.toEmailInput = input; }}
+            type="email"
+            placeholder="Reciepient Email"
+          />
+          <input type="submit" className="button-primary" />
         </div>
       </form>
     );
