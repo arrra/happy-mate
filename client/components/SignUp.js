@@ -19,23 +19,19 @@ class SignUp extends React.Component {
     return (
       <form className="signup-form" onSubmit={this.handleSubmit}>
         <h5>Please sign up</h5>
-        <div className="row">
-          <div className="column">
-            <input
-              className="u-full-width"
-              type="text"
-              ref={(input) => { this.userName = input; }}
-              placeholder="User Name"
-            />
-            <input
-              className="u-full-width"
-              type="password"
-              ref={(input) => { this.password = input; }}
-              placeholder="Password"
-            />
-            <input type="submit" className="button-primary" />
-          </div>
-        </div>
+        <input
+          className="u-full-width"
+          type="text"
+          ref={(input) => { this.userName = input; }}
+          placeholder="User Name"
+        />
+        <input
+          className="u-full-width"
+          type="password"
+          ref={(input) => { this.password = input; }}
+          placeholder="Password"
+        />
+        <input type="submit" className="button-primary" />
       </form>
 
     );
