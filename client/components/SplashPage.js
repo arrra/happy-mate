@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUp from './SignUp';
+import SignUpForm from './SignUp';
 
 class SplashPage extends React.Component {
   render() {
@@ -20,7 +20,7 @@ class SplashPage extends React.Component {
               </div>
             </div>
             <div className="three columns">
-              <SignUp />
+              <SignUpForm />
             </div>
           </div>
         </div>
