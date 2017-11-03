@@ -57,18 +57,15 @@ class ConversationPage extends React.Component {
       return null;
     }
     return (
-      <div>
-        <h1>Email will be sent every 24 hours for now.
-        Will be able to set your own interval later updates.
-        </h1>
-        <h1>{`From: ${this.state.conversation.from_email}`}</h1>
-        <h1>{`To: ${this.state.conversation.to_email}`}</h1>
-        <button onClick={this.handleSendRandomMessageClick}>Send Random Message</button>
+      <div className="container">
         {this.state.conversation.sent_messages.map(message => <li>{message.body}</li>)}
         <UserCreateMessageForm
           conversation={this.state.conversation}
           onConversationUpdate={this.handleConversationUpdate}
         />
+        <div className="conversation-submit-btn">
+          <button className="button-primary" onClick={this.handleSendRandomMessageClick}>Send Random Message</button>
+        </div>
       </div>
     );
   }

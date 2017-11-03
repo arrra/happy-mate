@@ -34,15 +34,22 @@ class UserCreateMessageForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          className="input"
-          ref={(input) => { this.userMessage = input; }}
-          placeholder="Enter a message"
-        />
-        <span>Enter Message</span>
-        <button onClick={this.handleClick}>Add Message</button>
-        {this.props.conversation.messagePool.map(message => <li>{message.body}</li>)}
+      <div className="message-input">
+        <h5>Enter A Message</h5>
+        <div className="row">
+          <div className="nine columns">
+            <input
+              className="u-full-width"
+              ref={(input) => { this.userMessage = input; }}
+              placeholder="Message"
+              type="text"
+            />
+          </div>
+          <div className="three columns">
+            <button onClick={this.handleClick}>Add Message</button>
+          </div>
+        </div>
+        {this.props.conversation.messagePool.map(message => <div className="row message-body">{message.body}</div>)}
       </div>
     );
   }

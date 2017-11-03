@@ -1,0 +1,30 @@
+.main {
+  margin: 80px auto 0;
+}
+.navbar {
+  background-color: #FFFFFF;
+  padding-top: 1em;
+}
+.navbar-links {
+  text-align: center;
+}
+
+.navbar-links ul li{
+  display: inline;
+}
+
+.title {
+  margin-top: 5em;
+}
+
+.signup-form {
+  margin-top: 5em;
+}
+
+@media (min-width: 550px) {
+  .divider {
+    height: 400px;
+    background-color: lightgrey;
+    width: 1px;
+  }
+}

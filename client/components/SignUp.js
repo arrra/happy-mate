@@ -17,29 +17,21 @@ class SignUp extends React.Component {
   }
   render() {
     return (
-      <form className="container" onSubmit={this.handleSubmit}>
-        <div className="title">
-          Please sign up
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            ref={(input) => { this.userName = input; }}
-            placeholder="User Name"
-          />
-        </div>
-        <div className="field">
-          <input
-            className="input"
-            ref={(input) => { this.password = input; }}
-            placeholder="Password"
-          />
-        </div>
-        <div className="field">
-          <p className="control">
-            <input type="submit"className="button is-success" />
-          </p>
-        </div>
+      <form className="signup-form" onSubmit={this.handleSubmit}>
+        <h5>Please sign up</h5>
+        <input
+          className="u-full-width"
+          type="text"
+          ref={(input) => { this.userName = input; }}
+          placeholder="User Name"
+        />
+        <input
+          className="u-full-width"
+          type="password"
+          ref={(input) => { this.password = input; }}
+          placeholder="Password"
+        />
+        <input type="submit" className="button-primary" />
       </form>
 
     );
