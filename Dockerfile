@@ -4,9 +4,7 @@ COPY . /opt/app
 
 WORKDIR /opt/app
 
-RUN cd /opt/app && \
-    rm -rf node_modules && \
-    npm install
+RUN npm install
 
 EXPOSE 3000 8080
 
