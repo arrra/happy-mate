@@ -1,0 +1,19 @@
+version: "3"
+services:
+  frontend:
+    container_name: frontend
+    image: happy-mate
+    ports:
+      - "8080:8080"
+    command: "node_modules/.bin/webpack-dev-server --host 0.0.0.0"
+  backend:
+    container_name: backend
+    image: happy-mate
+    command: "npm run start:docker"
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo:3.4

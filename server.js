@@ -1,4 +1,13 @@
 require('dotenv').config();
+
+if (typeof process.env.MONGO_HOST === 'undefined') {
+  if (process.argv[2] === 'docker') {
+    process.env.MONGO_HOST = 'mongo';
+  } else {
+    process.env.MONGO_HOST = 'localhost';
+  }
+}
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
