@@ -12,13 +12,32 @@ import LogIn from './LogIn';
 import SplashPage from './SplashPage';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: null,
+    };
+    this.handleDone = this.handleDone.bind(this);
+  }
+
+  handleDone(value) {
+    this.setState({
+      userName: value,
+    });
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Navbar />
+          <Navbar userName={this.state.userName} />
           <Route exact path="/" component={SplashPage} />
-          <Route path="/login" component={LogIn} />
+          <Route
+            path="/login"
+            render={() => (
+              <LogIn onDone={this.handleDone} />
+            )}
+          />
           <Route exact path="/conversations" component={SendMessageForm} />
           <Route
             exact

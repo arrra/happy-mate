@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class LogIn extends React.Component {
     { withCredentials: true },
     )
       .then((res) => {
-        if (res.data.conversation) {
+        if (res.status === 200) {
+          this.props.onDone(this.userName.value);
           this.props.history.push(`/conversations/${res.data.conversation}`);
         } else {
           this.props.history.push('/');
@@ -47,5 +48,9 @@ class LogIn extends React.Component {
     );
   }
 }
+
+LogIn.propTypes = {
+  onDone: PropTypes.func.isRequired,
+};
 
 export default LogIn;
