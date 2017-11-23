@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -18,9 +19,7 @@ class LogIn extends React.Component {
       .then((res) => {
         if (res.status === 200) {
           this.props.onDone(this.userName.value);
-          this.props.history.push(`/conversations/${res.data.conversation}`);
-        } else {
-          this.props.history.push('/');
+          this.props.history.push(`/users/${res.data._id}`);
         }
       })
       .catch(res => console.log(res));
@@ -53,4 +52,4 @@ LogIn.propTypes = {
   onDone: PropTypes.func.isRequired,
 };
 
-export default LogIn;
+export default withRouter(LogIn);
