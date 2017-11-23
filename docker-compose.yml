@@ -1,13 +1,18 @@
-version: "3"
+version: "2.1"
 services:
+  base:
+    build: .
+    working_dir: /opt/app
+    volumes:
+      - .:/opt/app
   frontend:
-    image: happy-mate
+    extends: base
     ports:
       - "8080:8080"
-    command: "node_modules/.bin/webpack-dev-server --host 0.0.0.0"
+    command: bash -c "npm install && node_modules/.bin/webpack-dev-server --host 0.0.0.0"
   backend:
-    image: happy-mate
-    command: "npm run start:docker"
+    extends: base
+    command: bash -c "npm install && npm run start:docker"
     volumes:
       - ./.env:/opt/app/.env
     ports:
@@ -16,3 +21,5 @@ services:
       - mongo
   mongo:
     image: mongo:3.4
+    volumes: 
+      - /data/db:/data/db
