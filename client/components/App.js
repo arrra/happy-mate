@@ -16,13 +16,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       userName: null,
+      isLoggedIn: false,
     };
     this.handleDone = this.handleDone.bind(this);
   }
 
   handleDone(value) {
     this.setState({
-      userName: value,
+      userName: value.userName,
+      isLoggedIn: value.isLoggedIn,
     });
   }
 
@@ -31,7 +33,13 @@ class App extends React.Component {
       <Router>
         <div>
           <Navbar userName={this.state.userName} />
-          <Route exact path="/" component={SplashPage} />
+          <Route
+            exact
+            path="/"
+            render={() => (<SplashPage
+              isLoggedIn={this.state.isLoggedIn}
+            />)}
+          />
           <Route
             path="/login"
             render={() => (

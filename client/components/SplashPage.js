@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SignUpForm from './SignUp';
 
 class SplashPage extends React.Component {
@@ -20,7 +21,7 @@ class SplashPage extends React.Component {
               <div className="divider" />
             </div>
             <div className="three columns">
-              <SignUpForm />
+              {this.props.isLoggedIn || <SignUpForm />}
             </div>
           </div>
         </div>
@@ -28,5 +29,9 @@ class SplashPage extends React.Component {
     );
   }
 }
+
+SplashPage.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default SplashPage;

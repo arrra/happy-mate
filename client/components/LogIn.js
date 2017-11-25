@@ -6,6 +6,10 @@ import { withRouter } from 'react-router';
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isLoggedIn: false,
+      userName: null,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(event) {
@@ -18,7 +22,8 @@ class LogIn extends React.Component {
     )
       .then((res) => {
         if (res.status === 200) {
-          this.props.onDone(this.userName.value);
+          this.setState({ isLoggedIn: true, userName: this.userName.value });
+          this.props.onDone(this.state);
           this.props.history.push(`/users/${res.data._id}`);
         }
       })
