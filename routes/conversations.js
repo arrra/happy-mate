@@ -36,13 +36,13 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  Conversation.findOne(req.query, (err, conversation) => {
+  Conversation.find(req.query, (err, conversation) => {
     if (err || !conversation) {
-      res.status(404).json(err);
+      res.status(404).json({ err: 'conversation not found' });
       return;
     }
 
-    if (!req.user || (req.user.id !== conversation.owner.toString())) {
+    if (!req.user || (req.user.id !== conversation[0].owner.toString())) {
       res.status(401).json({ error: 'user not authorized' });
       return;
     }
