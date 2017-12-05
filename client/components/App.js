@@ -10,6 +10,7 @@ import ConversationPage from './ConversationPage';
 import VerificationPage from './VerificationPage';
 import LogIn from './LogIn';
 import SplashPage from './SplashPage';
+import UserProfilePage from './UserProfilePage';
 
 class App extends React.Component {
   constructor(props) {
@@ -65,6 +66,14 @@ class App extends React.Component {
                   verifyToken={parsed.token}
                 />);
             }}
+          />
+          <Route
+            exact
+            path="/users/:id"
+            render={props => (
+              <UserProfilePage
+                userId={props.match.params.id}
+              />)}
           />
         </div>
       </Router>
