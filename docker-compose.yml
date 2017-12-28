@@ -12,7 +12,7 @@ services:
     command: bash -c "npm install && node_modules/.bin/webpack-dev-server --host 0.0.0.0"
   backend:
     extends: base
-    command: bash -c "npm install && npm run start:docker"
+    command: bash -c "npm install && npm install -g nodemon && nodemon server.js docker"
     volumes:
       - ./.env:/opt/app/.env
     ports:
